@@ -97,7 +97,7 @@ function Filter() {
   };
 
   return (
-    <div className="shadow-2xl md:-bottom-8  -bottom-52 md:start-80 start-0 absolute z-99 rounded-2xl">
+    <div className="shadow-2xl md:-bottom-8  -bottom-52 md:start-80 start-0 absolute z-[99] rounded-2xl">
       <Tabs
         defaultValue="sale"
         className="lg:w-[800px] w-[340px] bg-white rounded-2xl px-10 py-5"
@@ -280,13 +280,13 @@ function Filter() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent className="z-999">
-                        <SelectItem value="apartment">
+                                <SelectItem value="apartment" >
                           {t("apartment")}
                         </SelectItem>
-                        <SelectItem value="spaces">{t("spaces")}</SelectItem>
-                        <SelectItem value="houses">{t("houses")}</SelectItem>
+                        <SelectItem value="space">{t("spaces")}</SelectItem>
+                        <SelectItem value="house">{t("houses")}</SelectItem>
                         <SelectItem value="land">{t("land")}</SelectItem>
-                        <SelectItem value="flats">{t("flats")}</SelectItem>
+                        <SelectItem value="flat">{t("flats")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -311,7 +311,7 @@ function Filter() {
                           <SelectValue placeholder={t("location")} />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent className="z-999 h-30">
+                      <SelectContent className="z-999 h-52 overflow-y-auto">
                         {districtFields.map((district) => (
                           <SelectItem
                             key={district.id}

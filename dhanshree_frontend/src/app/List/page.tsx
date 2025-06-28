@@ -27,10 +27,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 import { formatNumberByLanguage } from "@/utils/formatNumberByLanguage";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import $axios from "@/lib/axios.instance";
 import { getLocalizedLabel } from "@/utils/formatAddressByLanguage";
-// import { getLocalizedLabel } from "@/lib/getLocalizedLabel";
 
 function Page() {
   const { posts, isLoading, error, pagination } = useSelector(
@@ -43,8 +42,8 @@ function Page() {
   const [sortOrder, setSortOrder] = useState("");
   const [filters, setFilters] = useState({
     type: "",
-    district: "", // Keep as string for URL handling
-    municipality: "", // Keep as string for URL handling
+    district: "",
+    municipality: "",
     minPrice: "",
     maxPrice: "",
     purpose: "sale",
@@ -55,13 +54,6 @@ function Page() {
 
   const { t, i18n } = useTranslation();
 
-  // const [districtFields, setDistrictFields] = useState<
-  //   { id: string; districtTitle: string }[]
-  // >([]);
-  // const [municipalityFields, setMunicipalityFields] = useState<
-  //   { id: string; municipalityTitle: string }[]
-  // >([]);
-
   const fetchProperties = useCallback(
     (filtersToUse: typeof filters, pageToUse: number) => {
       const apiParams: Record<string, any> = {
@@ -69,12 +61,10 @@ function Page() {
         size: itemsPerPage,
       };
 
-      // Add filters only if they have values and are not "all"
       if (filtersToUse.type && filtersToUse.type !== "") {
         apiParams.type = filtersToUse.type;
       }
 
-      // Convert district and municipality to numbers for backend
       if (
         filtersToUse.district &&
         filtersToUse.district !== "" &&
@@ -90,7 +80,6 @@ function Page() {
         apiParams.municipality = parseInt(filtersToUse.municipality);
       }
 
-      // Pass minPrice and maxPrice as separate parameters
       if (filtersToUse.minPrice && filtersToUse.minPrice !== "") {
         apiParams.minPrice = filtersToUse.minPrice;
       }
@@ -113,17 +102,15 @@ function Page() {
     [dispatch, itemsPerPage]
   );
 
- 
-
   // Handle URL changes and initial load
   useEffect(() => {
-    const urlFilters = {  
+    const urlFilters = {
       type: searchParams.get("type") || "",
       district: searchParams.get("district") || "",
       municipality: searchParams.get("municipality") || "",
       minPrice: searchParams.get("minPrice") || "",
       maxPrice: searchParams.get("maxPrice") || "",
-      purpose: searchParams.get("purpose") || "sale",
+      purpose: searchParams.get("purpose") || "",
       status: searchParams.get("status") || "all",
       propertyCode: searchParams.get("propertyCode") || "",
     };
@@ -145,7 +132,6 @@ function Page() {
       console.log("Page changed to:", currentPage);
       fetchProperties(filters, currentPage);
     }
-
   }, [currentPage, filters, fetchProperties]);
 
   const sortedPosts = [...posts].sort((a, b) => {
@@ -165,263 +151,234 @@ function Page() {
 
   return (
     <>
-      <div className="p-10 lg:p-20 flex flex-col lg:flex-row bg-gray-50 gap-8">
-        <div className="block lg:hidden w-full">
-          <Listfilter />
-        </div>
-
-        <div className="w-full lg:w-2/3">
-          <Breadcrumb className="pb-10">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink className="flex gap-2 items-center">
-                  <FontAwesomeIcon
-                    icon={faHouse}
-                    style={{ color: "#74C0FC" }}
-                  />
-                  Home
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink>List</BreadcrumbLink>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-
-          {/* Display active filters */}
-          {/* {hasActiveFilters && (
-            <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-sm text-gray-700">
-                  {t("activeFilters")}:
-                </h3>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={clearAllFilters}
-                  className="text-blue-600 hover:text-blue-800"
-                >
-                  {t("clearAll")}
-                </Button>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {filters.propertyCode && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
-                    <span>
-                      {t("code")}: {filters.propertyCode}
-                    </span>
-                    <button
-                      onClick={() => removeFilter("propertyCode")}
-                      className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {filters.type && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                    <span>
-                      {t("type")}:{" "}
-                      {filters.type
-                        .split(",")
-                        .map((type) => t(type))
-                        .join(", ")}
-                    </span>
-                    <button
-                      onClick={() => removeFilter("type")}
-                      className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {filters.status && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">
-                    <span>
-                      {t("status")}: {t(filters.status)}
-                    </span>
-                    <button
-                      onClick={() => removeFilter("status")}
-                      className="ml-1 hover:bg-orange-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {filters.district && filters.district !== "all" && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                    <span>
-                      {t("district")}:{" "}
-                      {(filters.district, "district")}
-                    </span>
-                    <button
-                      onClick={() => removeFilter("district")}
-                      className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {filters.municipality && filters.municipality !== "all" && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm">
-                    <span>
-                      {t("municipality")}:{" "}
-                      {(filters.municipality, "municipality")}
-                    </span>
-                    <button
-                      onClick={() => removeFilter("municipality")}
-                      className="ml-1 hover:bg-teal-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {(filters.minPrice || filters.maxPrice) && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
-                    <span>
-                      {t("price")}:{" "}
-                      {formatPriceRange(filters.minPrice, filters.maxPrice)}
-                    </span>
-                    <button
-                      onClick={() => {
-                        removeFilter("minPrice");
-                        removeFilter("maxPrice");
-                      }}
-                      className="ml-1 hover:bg-yellow-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-                {filters.purpose && filters.purpose !== "sale" && (
-                  <div className="flex items-center gap-1 px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">
-                    <span>
-                      {t("purpose")}: {t(filters.purpose)}
-                    </span>
-                    <button
-                      onClick={() => removeFilter("purpose")}
-                      className="ml-1 hover:bg-indigo-200 rounded-full p-0.5"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          )} */}
-
-          <h1 className="text-3xl font-bold">{t("availableProperties")}</h1>
-          <div className="flex justify-between py-12">
-            {isLoading ? (
-              <Skeleton className="w-50 h-5" />
-            ) : (
-              <p>
-                {formatNumberByLanguage(pagination.total, i18n.language)}{" "}
-                {t("properties")}
-              </p>
-            )}
-            <div className="flex gap-2 items-center">
-              <p>{t("sortBy")}</p>
-              <Select onValueChange={(value) => setSortOrder(value)}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder={t("defaultOrder")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="highToLow">
-                      {t("priceHighToLow")}
-                    </SelectItem>
-                    <SelectItem value="lowToHigh">
-                      {t("priceLowToHigh")}
-                    </SelectItem>
-                    <SelectItem value="newToOld">
-                      {t("dateNewToOld")}
-                    </SelectItem>
-                    <SelectItem value="oldToNew">
-                      {t("dateOldToNew")}
-                    </SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
+      <div className=" min-h-screen">
+        <div className="p-6 lg:p-20 flex flex-col lg:flex-row gap-8 ">
+          <div className="block lg:hidden w-full">
+            <Listfilter />
           </div>
 
-          {error && <p className="text-red-500">Error: {error}</p>}
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-9 gap-y-28">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <Skeleton
-                  key={index}
-                  className="lg:w-[350px] h-[550px] w-full shadow-xl relative pt-0 group cursor-pointer gap-4"
-                />
-              ))}
+          <div className="w-full lg:w-2/3">
+            {/* Enhanced Breadcrumb */}
+            <Breadcrumb className="pb-10">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink className="flex gap-2 items-center text-sky-600 hover:text-sky-700 transition-colors">
+                    <FontAwesomeIcon icon={faHouse} className="text-sky-600" />
+                    Home
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="text-sky-400" />
+                <BreadcrumbItem>
+                  <BreadcrumbLink className="text-sky-700 font-medium">
+                    List
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+
+            {/* Enhanced Page Header */}
+            <div className="mb-8">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-sky-600 via-sky-700 to-sky-600 bg-clip-text text-transparent mb-2">
+                {t("availableProperties")}
+              </h1>
+              <div className="h-1 w-24 bg-gradient-to-r from-sky-500 to-sky-600 rounded-full"></div>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-9 gap-y-20 py-10">
-              {sortedPosts.map((property) => (
-                <Cardfm key={property.id} property={property} />
-              ))}
+
+            {/* Enhanced Stats and Sort Bar */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-6 px-6 bg-white rounded-2xl shadow-lg border border-sky-100 mb-8">
+              {isLoading ? (
+                <Skeleton className="w-40 h-6 bg-sky-100" />
+              ) : (
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-sky-500 rounded-full animate-pulse"></div>
+                  <p className="text-sky-700 font-medium">
+                    {formatNumberByLanguage(pagination.total, i18n.language)}{" "}
+                    <span className="text-sky-600">{t("properties")}</span>
+                  </p>
+                </div>
+              )}
+              <div className="flex gap-3 items-center">
+                <p className="text-sky-700 font-medium">{t("sortBy")}:</p>
+                <Select onValueChange={(value) => setSortOrder(value)}>
+                  <SelectTrigger className="w-[200px] border-sky-200 focus:border-sky-500 focus:ring-sky-200 rounded-xl">
+                    <SelectValue placeholder={t("defaultOrder")} />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-xl border-sky-200">
+                    <SelectGroup>
+                      <SelectItem value="highToLow" className="rounded-lg">
+                        {t("priceHighToLow")}
+                      </SelectItem>
+                      <SelectItem value="lowToHigh" className="rounded-lg">
+                        {t("priceLowToHigh")}
+                      </SelectItem>
+                      <SelectItem value="newToOld" className="rounded-lg">
+                        {t("dateNewToOld")}
+                      </SelectItem>
+                      <SelectItem value="oldToNew" className="rounded-lg">
+                        {t("dateOldToNew")}
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          )}
 
-          {!isLoading && sortedPosts.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-lg">{t("noPropertiesFound")}</p>
-              <p className="text-gray-400 text-sm mt-2">
-                {t("tryAdjustingFilters")}
-              </p>
-            </div>
-          )}
+            {error && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-xl mb-6">
+                <p className="text-red-600 font-medium">Error: {error}</p>
+              </div>
+            )}
 
-          {pagination.totalPages > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-10">
-              {/* Previous Button */}
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className={`px-4 py-2 rounded border transition cursor-pointer ${
-                  currentPage === 1
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-gray-700 hover:bg-blue-500 hover:text-white border-gray-300"
-                }`}
-              >
-                {t("previous")}
-              </button>
+            {/* Enhanced Loading State */}
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div key={index} className="space-y-4">
+                    <Skeleton className="w-full h-64 rounded-2xl bg-gradient-to-br from-sky-100 to-sky-200" />
+                    <div className="space-y-3 p-4">
+                      <Skeleton className="h-6 w-3/4 bg-sky-100 rounded-lg" />
+                      <Skeleton className="h-4 w-1/2 bg-sky-75 rounded-lg" />
+                      <Skeleton className="h-8 w-2/3 bg-sky-150 rounded-lg" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {sortedPosts.map((property) => (
+                  <div
+                    key={property.id}
+                    className="transform hover:scale-[1.02] transition-all duration-300"
+                  >
+                    <Cardfm property={property} />
+                  </div>
+                ))}
+              </div>
+            )}
 
-              {/* Page Numbers */}
-              {Array.from({ length: pagination.totalPages }, (_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handlePageChange(index + 1)}
-                  className={`px-4 py-2 rounded border transition cursor-pointer ${
-                    currentPage === index + 1
-                      ? "bg-blue-500 text-white border-blue-500"
-                      : "bg-white text-gray-700 hover:bg-blue-100 border-gray-300"
-                  }`}
-                >
-                  {formatNumberByLanguage(index + 1, i18n.language)}
-                </button>
-              ))}
+            {/* Enhanced Empty State */}
+            {!isLoading && sortedPosts.length === 0 && (
+              <div className="text-center py-20 bg-gradient-to-br from-sky-50 to-white rounded-2xl border border-sky-100">
+                <div className="w-24 h-24 bg-gradient-to-br from-sky-200 to-sky-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-sky-600 text-4xl">🏠</span>
+                </div>
+                <p className="text-sky-600 font-semibold text-xl mb-2">
+                  {t("noPropertiesFound")}
+                </p>
+                <p className="text-sky-500 text-sm">
+                  {t("tryAdjustingFilters")}
+                </p>
+              </div>
+            )}
 
-              {/* Next Button */}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === pagination.totalPages}
-                className={`px-4 py-2 rounded border transition cursor-pointer ${
-                  currentPage === pagination.totalPages
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-gray-700 hover:bg-blue-500 hover:text-white border-gray-300"
-                }`}
-              >
-                {t("next")}
-              </button>
-            </div>
-          )}
-        </div>
+            {/* Enhanced Professional Pagination */}
+            {pagination.totalPages > 0 && (
+              <div className="flex flex-col items-center gap-6 mt-16">
+                {/* Pagination Info */}
+                <div className="text-center">
+                  <p className="text-sky-600 text-sm">
+                    Showing page{" "}
+                    {formatNumberByLanguage(currentPage, i18n.language)} of{" "}
+                    {formatNumberByLanguage(
+                      pagination.totalPages,
+                      i18n.language
+                    )}
+                  </p>
+                </div>
 
-        <div className="hidden lg:block lg:w-1/3 w-full">
-          <Listfilter />
+                {/* Pagination Controls */}
+                <div className="flex items-center gap-2 bg-white p-3 rounded-2xl shadow-xl border border-sky-100">
+                  {/* Previous Button */}
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={`group relative flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                      currentPage === 1
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        : "bg-gradient-to-r from-sky-500 to-sky-600 text-white hover:from-sky-600 hover:to-sky-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    <span className="hidden sm:inline">{t("previous")}</span>
+                    {currentPage > 1 && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    )}
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className="flex items-center gap-1">
+                    {Array.from(
+                      { length: pagination.totalPages },
+                      (_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handlePageChange(index + 1)}
+                          className={`relative w-12 h-12 rounded-xl font-semibold transition-all duration-300 ${
+                            currentPage === index + 1
+                              ? "bg-gradient-to-r from-sky-600 to-sky-700 text-white shadow-lg transform scale-110"
+                              : "bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700 hover:scale-105"
+                          }`}
+                        >
+                          {formatNumberByLanguage(index + 1, i18n.language)}
+                          {currentPage === index + 1 && (
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-xl animate-pulse"></div>
+                          )}
+                        </button>
+                      )
+                    )}
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === pagination.totalPages}
+                    className={`group relative flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                      currentPage === pagination.totalPages
+                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                        : "bg-gradient-to-r from-sky-500 to-sky-600 text-white hover:from-sky-600 hover:to-sky-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    }`}
+                  >
+                    <span className="hidden sm:inline">{t("next")}</span>
+                    <ChevronRight className="h-4 w-4" />
+                    {currentPage < pagination.totalPages && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    )}
+                  </button>
+                </div>
+
+                {/* Page Jump Quick Links (for large page counts) */}
+                {pagination.totalPages > 5 && (
+                  <div className="flex items-center gap-2 text-sm text-sky-600">
+                    <span>Quick jump:</span>
+                    <button
+                      onClick={() => handlePageChange(1)}
+                      className="px-3 py-1 rounded-lg hover:bg-sky-100 transition-colors"
+                    >
+                      First
+                    </button>
+                    <button
+                      onClick={() =>
+                        handlePageChange(Math.ceil(pagination.totalPages / 2))
+                      }
+                      className="px-3 py-1 rounded-lg hover:bg-sky-100 transition-colors"
+                    >
+                      Middle
+                    </button>
+                    <button
+                      onClick={() => handlePageChange(pagination.totalPages)}
+                      className="px-3 py-1 rounded-lg hover:bg-sky-100 transition-colors"
+                    >
+                      Last
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="hidden lg:block lg:w-1/3 w-full">
+            <Listfilter />
+          </div>
         </div>
       </div>
     </>

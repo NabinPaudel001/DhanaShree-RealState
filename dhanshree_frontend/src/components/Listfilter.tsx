@@ -42,10 +42,10 @@ import { FilterLocationFields } from "./Filter/FilterLocationFields";
 
 const items = [
   { id: "land", label: "land" },
-  { id: "houses", label: "houses" },
+  { id: "house", label: "house" },
   { id: "apartment", label: "apartment" },
-  { id: "flats", label: "flats" },
-  { id: "spaces", label: "spaces" },
+  { id: "flat", label: "flat" },
+  { id: "space", label: "space" },
 ] as const;
 
 // --- First schema: for code filter ---
