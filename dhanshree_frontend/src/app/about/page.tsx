@@ -19,90 +19,52 @@ import "aos/dist/aos.css";
 
 const teamMembers = [
   {
-    id: 1,
+    id: "john",
     name: "John Doe",
-    position: "Founder & CEO",
     experience: "15+ Years",
-    image: "/user/team/ceo.jpg", // eta image path add gardinu hai 
-    bio: "With over 15 years in real estate, John founded Dhanashree with a vision to revolutionize property services in Nepal.",
-    specialties: [
-      "Strategic Planning",
-      "Market Analysis",
-      "Investment Advisory",
-    ],
+    image: "/user/team/ceo.jpg",
     email: "john@dhanashree.com",
-    phone: "+977-1-234567",
+    phone: "+977-1-234567"
   },
   {
-    id: 2,
+    id: "jane",
     name: "Jane Smith",
-    position: "Head of Sales",
     experience: "12+ Years",
     image: "/user/team/sales-head.jpg",
-    bio: "Jane leads our sales team with expertise in luxury properties and commercial real estate transactions.",
-    specialties: ["Luxury Properties", "Commercial Sales", "Client Relations"],
     email: "jane@dhanashree.com",
-    phone: "+977-1-234568",
+    phone: "+977-1-234568"
   },
   {
-    id: 3,
+    id: "mike",
     name: "Mike Johnson",
-    position: "Property Consultant",
     experience: "8+ Years",
-    image: "/user/team/consultant.jpg", 
-    bio: "Mike specializes in residential properties and helps families find their perfect homes.",
-    specialties: [
-      "Residential Properties",
-      "First-time Buyers",
-      "Investment Properties",
-    ],
+    image: "/user/team/consultant.jpg",
     email: "mike@dhanashree.com",
-    phone: "+977-1-234569",
+    phone: "+977-1-234569"
   },
   {
-    id: 4,
+    id: "sarah",
     name: "Sarah Wilson",
-    position: "Marketing Director",
     experience: "10+ Years",
-    image: "/user/team/marketing.jpg", 
-    bio: "Sarah oversees all marketing initiatives and digital presence for our properties.",
-    specialties: [
-      "Digital Marketing",
-      "Property Photography",
-      "Brand Strategy",
-    ],
+    image: "/user/team/marketing.jpg",
     email: "sarah@dhanashree.com",
-    phone: "+977-1-234570",
-  },
+    phone: "+977-1-234570"
+  }
 ];
 
 const companyValues = [
-  {
-    icon: Target,
-    title: "Our Mission",
-    description:
-      "To provide exceptional real estate services that exceed client expectations while building lasting relationships based on trust, integrity, and professional excellence.",
-  },
-  {
-    icon: Eye,
-    title: "Our Vision",
-    description:
-      "To be the leading real estate company in Nepal, known for innovation, reliability, and creating value for all stakeholders in the property market.",
-  },
-  {
-    icon: Heart,
-    title: "Our Values",
-    description:
-      "Integrity, transparency, customer-centricity, and continuous improvement guide every decision we make and every service we provide.",
-  },
+  { icon: Target, id: "mission" },
+  { icon: Eye,    id: "vision"  },
+  { icon: Heart,  id: "values"  },
 ];
 
 const achievements = [
-  { icon: Building2, value: "500+", label: "Properties Sold" },
-  { icon: Users, value: "1000+", label: "Happy Clients" },
-  { icon: Award, value: "15+", label: "Years Experience" },
-  { icon: MapPin, value: "50+", label: "Locations Covered" },
+  { icon: Building2, value: "500+", label: "achievements.propertiesSold" },
+  { icon: Users, value: "1000+", label: "achievements.happyClients" },
+  { icon: Award, value: "15+", label: "achievements.yearsExperience" },
+  { icon: MapPin, value: "50+", label: "achievements.locationsCovered" }
 ];
+
 
 export default function AboutPage() {
   const { t } = useTranslation();
@@ -127,7 +89,7 @@ export default function AboutPage() {
             >
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
               <span className="text-sky-700 font-medium text-sm">
-                About Dhanashree Real Estate
+                {t("aboutDhanaShree")}
               </span>
             </div>
 
@@ -135,7 +97,7 @@ export default function AboutPage() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-sky-600 via-sky-700 to-sky-600 bg-clip-text text-transparent leading-tight mb-6"
               data-aos="fade-up"
             >
-              Building Dreams, Creating Futures
+              {t("aboutHeading")}
             </h1>
 
             <p
@@ -143,10 +105,8 @@ export default function AboutPage() {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              For over 15 years, Dhanashree Real Estate has been a trusted
-              partner in helping people find their perfect properties and make
-              sound real estate investments across Nepal.
-            </p>
+              {t("aboutParagraph")}
+              </p>
 
             {/* Decorative line */}
             <div
@@ -175,37 +135,40 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-sky-600/30 via-transparent to-transparent"></div>
             </div>
 
-            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {achievements.map((achievement, index) => (
-                  <div
-                    key={index}
-                    className="bg-white p-4 rounded-2xl shadow-xl border border-sky-100 text-center"
-                  >
-                    <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-sky-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <achievement.icon className="h-4 w-4 text-white" />
-                    </div>
-                    <div className="text-xl font-bold text-sky-700">
-                      {achievement.value}
-                    </div>
-                    <div className="text-sky-600 text-xs font-medium">
-                      {achievement.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+<div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
+  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    {achievements.map((achievement, index) => (
+      <div
+        key={index}
+        className="bg-white p-4 rounded-2xl shadow-xl border border-sky-100 text-center"
+      >
+        <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-sky-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+          <achievement.icon className="h-4 w-4 text-white" />
+        </div>
+        <div className="text-xl font-bold text-sky-700">
+          {achievement.value}
+        </div>
+        <div className="text-sky-600 text-xs font-medium">
+          {t(achievement.label)}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
           </div>
         </div>
       </section>
 
       {/* Mission, Vision, Values */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {companyValues.map((value, index) => (
+  <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {companyValues.map((value, index) => {
+            const key = `companyValues.${value.id}`;
+            return (
               <div
-                key={index}
+                key={value.id}
                 className="bg-white p-8 rounded-3xl shadow-lg border border-sky-100 text-center"
                 data-aos="fade-up"
                 data-aos-delay={index * 200}
@@ -214,193 +177,180 @@ export default function AboutPage() {
                   <value.icon className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent mb-4">
-                  {value.title}
+                  {t(`${key}.title`)}
                 </h3>
                 <p className="text-sky-600 leading-relaxed">
-                  {value.description}
+                  {t(`${key}.description`)}
                 </p>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Team Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-sky-600 via-sky-700 to-sky-600 bg-clip-text text-transparent mb-6"
-              data-aos="fade-up"
-            >
-              Meet Our Expert Team
-            </h2>
-            <p
-              className="text-lg text-sky-600 max-w-2xl mx-auto"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              Our dedicated professionals bring years of experience and local
-              market expertise to help you achieve your real estate goals.
-            </p>
-          </div>
+ <section className="py-16 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <div className="text-center mb-16">
+      <h2
+        className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-sky-600 via-sky-700 to-sky-600 bg-clip-text text-transparent mb-6"
+        data-aos="fade-up"
+      >
+        {t("meetExpertTeam")}
+      </h2>
+      <p
+        className="text-lg text-sky-600 max-w-2xl mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        {t("teamDescription")}
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={member.id}
-                className="group bg-white rounded-3xl shadow-lg border border-sky-100 overflow-hidden hover:shadow-2xl transition-all duration-500"
-                data-aos="fade-up"
-                data-aos-delay={index * 150}
-              >
-                {/* Image */}
-                <div className="relative w-full h-64 bg-gradient-to-br from-sky-100 to-sky-200">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {teamMembers.map((member, index) => {
+        const base = `team.${member.id}`;
+        return (
+          <div
+            key={member.id}
+            className="group bg-white rounded-3xl shadow-lg border border-sky-100 overflow-hidden hover:shadow-2xl transition-all duration-500"
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
+          >
+            {/* Image */}
+            <div className="relative w-full h-64 bg-gradient-to-br from-sky-100 to-sky-200">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold text-sky-700 mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-sky-600 font-medium text-sm">
-                      {member.position}
-                    </p>
-                    <p className="text-green-600 text-xs font-semibold">
-                      {member.experience}
-                    </p>
-                  </div>
+            {/* Content */}
+            <div className="p-6 space-y-4">
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-sky-700 mb-1">
+                  {member.name}
+                </h3>
+                <p className="text-sky-600 font-medium text-sm">
+                  {t(`${base}.position`)}
+                </p>
+                <p className="text-green-600 text-xs font-semibold">
+                  {member.experience}
+                </p>
+              </div>
 
-                  <p className="text-sky-600 text-sm leading-relaxed">
-                    {member.bio}
-                  </p>
+              <p className="text-sky-600 text-sm leading-relaxed">
+                {t(`${base}.bio`)}
+              </p>
 
-                  {/* Specialties */}
-                  <div className="space-y-2">
-                    <p className="text-sky-700 font-semibold text-sm">
-                      Specialties:
-                    </p>
-                    <div className="flex flex-wrap gap-1">
-                      {member.specialties.map((specialty, idx) => (
-                        <span
-                          key={idx}
-                          className="bg-sky-100 text-sky-700 text-xs px-2 py-1 rounded-lg"
-                        >
-                          {specialty}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Contact */}
-                  <div className="pt-4 border-t border-sky-100">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Mail className="h-4 w-4 text-sky-500" />
-                      <span className="text-sky-600 text-sm">
-                        {member.email}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="h-4 w-4 text-sky-500" />
-                      <span className="text-sky-600 text-sm">
-                        {member.phone}
-                      </span>
-                    </div>
-                  </div>
+              {/* Specialties */}
+              <div className="space-y-2">
+                <p className="text-sky-700 font-semibold text-sm">
+                  {t("team.specialtiesLabel")}
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  {Array.isArray(t(`${base}.specialties`, { returnObjects: true }))
+                    ? (t(`${base}.specialties`, { returnObjects: true }) as string[]).map(
+                        (specialty: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="bg-sky-100 text-sky-700 text-xs px-2 py-1 rounded-lg"
+                          >
+                            {specialty}
+                          </span>
+                        )
+                      )
+                    : null}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
+              {/* Contact */}
+              <div className="pt-4 border-t border-sky-100">
+                <div className="flex items-center gap-2 mb-2">
+                  <Mail className="h-4 w-4 text-sky-500" />
+                  <span className="text-sky-600 text-sm">{member.email}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-sky-500" />
+                  <span className="text-sky-600 text-sm">{member.phone}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
       {/* Company Story */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <div className="flex-1" data-aos="fade-right">
-              <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent mb-6">
-                Our Story
-              </h2>
-              <div className="space-y-6 text-sky-600 leading-relaxed">
-                <p>
-                  Founded in 2008, Dhanashree Real Estate began as a small
-                  family business with a simple mission: to help people find
-                  their perfect homes. What started with just two people and a
-                  handful of properties has grown into one of Nepal's most
-                  trusted real estate companies.
-                </p>
-                <p>
-                  Over the years, we've adapted to changing markets, embraced
-                  new technologies, and expanded our services to meet the
-                  evolving needs of our clients. From residential sales to
-                  commercial investments, property management to construction
-                  support, we've built a comprehensive platform that serves
-                  every aspect of the real estate journey.
-                </p>
-                <p>
-                  Today, we're proud to have helped over 1,000 families find
-                  their dream homes and assisted countless investors in building
-                  their property portfolios. Our success is measured not just in
-                  transactions closed, but in the relationships we've built and
-                  the trust our clients place in us.
-                </p>
-              </div>
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
+          <div className="flex-1" data-aos="fade-right">
+            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent mb-6">
+              {t("ourStory.title")}
+            </h2>
+            <div className="space-y-6 text-sky-600 leading-relaxed">
+              {Array.isArray(t("ourStory.paragraphs", { returnObjects: true }))
+                ? (t("ourStory.paragraphs", { returnObjects: true }) as string[]).map(
+                    (paragraph: string, index: number) => (
+                      <p key={index}>{paragraph}</p>
+                    )
+                  )
+                : <p>{t("ourStory.paragraphs")}</p>
+              }
             </div>
+          </div>
 
-            <div className="flex-1" data-aos="fade-left">
-              <div className="relative w-full h-96 rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-sky-100 to-sky-200">
-                <img
-                  src="logo.png"
-                  alt="Our Company Story"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 via-transparent to-transparent"></div>
-              </div>
+          <div className="flex-1" data-aos="fade-left">
+            <div className="relative w-full h-96 rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-sky-100 to-sky-200">
+              <img
+                src="logo.png"
+                alt="Company Logo"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-sky-600/20 via-transparent to-transparent"></div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Contact CTA */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <div
-            className="bg-gradient-to-br from-sky-600 to-sky-700 rounded-3xl p-8 lg:p-12 shadow-2xl"
-            data-aos="zoom-in"
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Ready to Work With Us?
-            </h2>
-            <p className="text-sky-100 text-lg mb-8 max-w-2xl mx-auto">
-              Whether you're buying, selling, or investing in real estate, our
-              experienced team is here to guide you every step of the way.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:+977-1-234567"
-                className="inline-flex items-center gap-2 bg-white text-sky-700 hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-              >
-                <Phone className="h-5 w-5" />
-                Call Us Now
-              </a>
-              <a
-                href="mailto:info@dhanashree.com"
-                className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-sky-700 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
-              >
-                <Mail className="h-5 w-5" />
-                Send Email
-              </a>
-            </div>
+   <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto text-center">
+        <div
+          className="bg-gradient-to-br from-sky-600 to-sky-700 rounded-3xl p-8 lg:p-12 shadow-2xl"
+          data-aos="zoom-in"
+        >
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            {t("contactSection.title")}
+          </h2>
+          <p className="text-sky-100 text-lg mb-8 max-w-2xl mx-auto">
+            {t("contactSection.description")}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="tel:+977-1-234567"
+              className="inline-flex items-center gap-2 bg-white text-sky-700 hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            >
+              <Phone className="h-5 w-5" />
+              {t("contactSection.callUs")}
+            </a>
+            <a
+              href="mailto:info@dhanashree.com"
+              className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-sky-700 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
+            >
+              <Mail className="h-5 w-5" />
+              {t("contactSection.sendEmail")}
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     </div>
   );
 }
