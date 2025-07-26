@@ -8,6 +8,7 @@ import SpaceOverview from "./TabContent/SpaceOverview";
 import FlatOverview from "./TabContent/FlatOverview";
 import { fetchPropertyDetails } from "@/types/property";
 import { useTranslation } from "react-i18next";
+import { englishToNepaliNumber } from "@/utils/numberUtils";
 
 interface InnerTabProps {
   property: fetchPropertyDetails;
@@ -16,12 +17,28 @@ interface InnerTabProps {
 }
 
 function InnerTab({ property, isLoading, error }: InnerTabProps) {
+  const { t, i18n } = useTranslation();
 
-  console.log("property details is", property.details);
+  // Helper function to format numbers based on language
+  const formatNumber = (value: any) => {
+    if (!value) return value;
+    console.log("i18n language:", i18n.language);
+    return i18n.language === "ne" ? englishToNepaliNumber(value) : value;
+  };
+
   const propertyInteriorDetails = [
-    { label: "no. of Bedrooms", value: property.details.bedrooms },
-    { label: "no. of Bathrooms", value: property.details.bathrooms },
-    { label: "no. of Living rooms", value: property.details.livingRooms },
+    {
+      label: "no. of Bedrooms",
+      value: formatNumber(property.details.bedrooms),
+    },
+    {
+      label: "no. of Bathrooms",
+      value: formatNumber(property.details.bathrooms),
+    },
+    {
+      label: "no. of Living rooms",
+      value: formatNumber(property.details.livingRooms),
+    },
     { label: "Furnishing", value: property.details.furnishing },
     { label: "Parking", value: property.details.parking },
   ];
@@ -77,8 +94,6 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
         return <div>No Overview Available</div>;
     }
   };
-
-  const { t } = useTranslation();
 
   return (
     <div className="w-full lg:w-2/3">

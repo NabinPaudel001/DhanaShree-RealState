@@ -7,9 +7,11 @@ import {
   faRulerCombined,
   faCalendarAlt,
   faArrowUpRightFromSquare,
-  faCouch, // optional: better suited for furnished type
+  faCouch,
 } from "@fortawesome/free-solid-svg-icons";
 import { fetchPropertyDetails } from "@/types/property";
+import { useTranslation } from "react-i18next";
+import { englishToNepaliNumber } from "@/utils/numberUtils";
 
 function ApartmentOverview({
   isLoading,
@@ -20,50 +22,90 @@ function ApartmentOverview({
   error: any;
   property: fetchPropertyDetails;
 }) {
+  const { i18n } = useTranslation();
+
+  // Helper function to format numbers based on language
+  const formatNumber = (value: any) => {
+    if (!value) return value;
+    return i18n.language === "ne" ? englishToNepaliNumber(value) : value;
+  };
+
+  const formatPrice = (price: number) => {
+    const formattedPrice = Number(price).toLocaleString();
+    return i18n.language === "ne"
+      ? englishToNepaliNumber(formattedPrice)
+      : formattedPrice;
+  };
+
+  const formatDate = (date: string) => {
+    const formattedDate = new Date(date).toLocaleDateString();
+    return i18n.language === "ne"
+      ? englishToNepaliNumber(formattedDate)
+      : formattedDate;
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading property details.</div>;
   if (!property) return <div>No property data available.</div>;
 
   const features = [
     { label: "BHK", value: property.details.apartmentType, icon: faBed },
-    { label: "Built Area", value: `${ property.details?.builtInArea?.unit,property.details?.builtInArea?.value}`, icon: faRulerCombined },
+    {
+      label: "Built Area",
+      value: `${formatNumber(property.details?.builtInArea?.value)} ${
+        property.details?.builtInArea?.unit
+      }`,
+      icon: faRulerCombined,
+    },
     {
       label: "Floor",
-      value: property.details.floors,
+      value: formatNumber(property.details.floors),
       icon: faArrowUpRightFromSquare,
     },
     {
       label: "Furnished Type",
       value: property.details.furnishing,
-      icon: faCouch, 
+      icon: faCouch,
     },
     {
       label: "Built Year",
-      value: property.details.builtYear,
+      value: formatNumber(property.details.builtYear),
       icon: faCalendarAlt,
     },
-
   ];
 
   const propertyDetails = [
-    { label: "Apartment ID", value:  `${property.propertyCode } `},
+    { label: "Apartment ID", value: formatNumber(property.propertyCode) },
     { label: "Property Face", value: property.details.facing },
-    { label: "Total Floors", value: property.details.floors },
-    { label: "Total Area", value:`${ property.details.landArea.unit,property.details.landArea.value }`},
-    { label: "Built Up Area", value:  `${property.details?.builtInArea?.value} ${property.details?.builtInArea?.unit}`},
+    { label: "Total Floors", value: formatNumber(property.details.floors) },
+    {
+      label: "Total Area",
+      value: `${formatNumber(property.details.landArea.value)} ${
+        property.details.landArea.unit
+      }`,
+    },
+    {
+      label: "Built Up Area",
+      value: `${formatNumber(property.details?.builtInArea?.value)} ${
+        property.details?.builtInArea?.unit
+      }`,
+    },
     {
       label: "Date Posted",
-      value: new Date(property.createdAt).toLocaleDateString(),
+      value: formatDate(property.createdAt),
     },
     {
       label: "Price",
-      value: property.price
-        ? `Rs ${Number(property.price).toLocaleString()}`
-        : "N/A",
+      value: property.price ? `Rs ${formatPrice(property.price)}` : "N/A",
     },
     { label: "Status", value: property.status },
     { label: "Purpose", value: property.purpose },
-    {label:"road Access", value:`${property.details.frontage.value} ${property.details.frontage.unit}`}
+    {
+      label: "Road Access",
+      value: `${formatNumber(property.details.frontage.value)} ${
+        property.details.frontage.unit
+      }`,
+    },
   ];
 
   return (
@@ -73,9 +115,9 @@ function ApartmentOverview({
           <h2 className="font-medium text-lg">Overview</h2>
           <h2>
             <span className="font-semibold">Apartment ID:</span>{" "}
-            {property.propertyCode}
+            {formatNumber(property.propertyCode)}
           </h2>
-        </div>  
+        </div>
 
         <div className="flex flex-wrap gap-6">
           {features.map((item, index) => (

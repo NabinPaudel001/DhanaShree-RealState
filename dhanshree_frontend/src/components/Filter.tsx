@@ -97,7 +97,7 @@ function Filter() {
   };
 
   return (
-    <div className="shadow-2xl md:-bottom-8  -bottom-52 md:start-80 start-0 absolute z-[99] rounded-2xl">
+    <div className="shadow-2xl lg:-bottom-8 md:-bottom-28 md:start-80  sm:start-52 -bottom-60 lg:start-80 start-10 absolute z-[99] rounded-2xl">
       <Tabs
         defaultValue="sale"
         className="lg:w-[800px] w-[340px] bg-white rounded-2xl px-10 py-5"

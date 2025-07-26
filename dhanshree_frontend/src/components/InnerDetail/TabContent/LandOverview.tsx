@@ -8,51 +8,96 @@ import {
   faMountain,
 } from "@fortawesome/free-solid-svg-icons";
 import { fetchPropertyDetails } from "@/types/property";
+import { useTranslation } from "react-i18next";
+import { englishToNepaliNumber } from "@/utils/numberUtils";
 
-function LandOverview({ property,isLoading,error}: { property: fetchPropertyDetails ,isLoading:boolean, error:any}) {
-  const features = [  
+function LandOverview({
+  property,
+  isLoading,
+  error,
+}: {
+  property: fetchPropertyDetails;
+  isLoading: boolean;
+  error: any;
+}) {
+  const { i18n } = useTranslation();
+
+  // Helper function to format numbers based on language
+  const formatNumber = (value: any) => {
+    if (!value) return value;
+    return i18n.language === "ne" ? englishToNepaliNumber(value) : value;
+  };
+
+  const formatPrice = (price: number) => {
+    const formattedPrice = price.toLocaleString();
+    return i18n.language === "ne"
+      ? englishToNepaliNumber(formattedPrice)
+      : formattedPrice;
+  };
+
+  const formatDate = (date: string) => {
+    const formattedDate = new Date(date).toLocaleDateString();
+    return i18n.language === "ne"
+      ? englishToNepaliNumber(formattedDate)
+      : formattedDate;
+  };
+
+  const features = [
     {
       label: "Area",
-      value: `${property.details.landArea.value} ${property.details.landArea.unit}`,
+      value: `${formatNumber(property.details.landArea.value)} ${
+        property.details.landArea.unit
+      }`,
       icon: faRulerCombined,
     },
     {
       label: "Road Access",
-      value: `${property.details.frontage.value} ${property.details.frontage.unit}`,
+      value: `${formatNumber(property.details.frontage.value)} ${
+        property.details.frontage.unit
+      }`,
       icon: faRoad,
     },
-   
     {
       label: "Land Type",
-        value: property.details.zoning,
+      value: property.details.zoning,
       icon: faMountain,
     },
     {
       label: "Listed Year",
-      value: new Date(property.createdAt).toLocaleDateString(),
+      value: formatDate(property.createdAt),
       icon: faCalendarAlt,
     },
   ];
 
   const propertyDetails = [
-    { label: "Land ID", value: property.propertyCode },
+    { label: "Land ID", value: formatNumber(property.propertyCode) },
     { label: "Property Face", value: property.details.facing },
-    { label: "Road Access", value: `${property.details.frontage.value} ${property.details.frontage.unit}` },
+    {
+      label: "Road Access",
+      value: `${formatNumber(property.details.frontage.value)} ${
+        property.details.frontage.unit
+      }`,
+    },
     { label: "Purpose", value: property.purpose },
-    { label: "Land Area", value: `${property.details.landArea.value} ${property.details.landArea.unit}` },
-    { label: "Date Posted", value: new Date(property.createdAt).toLocaleDateString() },
-    { label: "Price", value: `Rs ${property.price.toLocaleString()}` },
+    {
+      label: "Land Area",
+      value: `${formatNumber(property.details.landArea.value)} ${
+        property.details.landArea.unit
+      }`,
+    },
+    { label: "Date Posted", value: formatDate(property.createdAt) },
+    { label: "Price", value: `Rs ${formatPrice(property.price)}` },
     { label: "Status", value: property.status },
   ];
 
   return (
     <div className="flex flex-col gap-4">
-  
       <div className="bg-white p-4 rounded-lg shadow">
         <div className="flex justify-between py-6">
           <h1 className="font-medium">Overview</h1>
           <h1>
-            <span className="font-semibold">Land ID:</span> [LND2301]
+            <span className="font-semibold">Land ID:</span> [
+            {formatNumber(property.propertyCode)}]
           </h1>
         </div>
 
