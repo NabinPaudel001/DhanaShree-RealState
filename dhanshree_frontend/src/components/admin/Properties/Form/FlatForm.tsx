@@ -41,7 +41,7 @@ const defaultValues: Partial<FlatFormValues> = {
   description: "",
   descriptionNp: "",
   status: PropertyStatus.EMERGING,
-  builtYear: 0,
+  builtYear: 1990,
   builtYearNep: "",
   images: [], 
   thumbnail: new File([""], "placeholder.png", { type: "image/png" }),

@@ -71,10 +71,24 @@ interface ListfilterProps {
 }
 
 function Listfilter({ onFiltersChange }: ListfilterProps) {
+
+function useDebounce<T>(value: T, delay: number): T {
+  const [debounced, setDebounced] = useState(value)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounced(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+
+  return debounced
+}
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t, i18n } = useTranslation();
   const [showFilters, setShowFilters] = useState(false);
+ 
+
+ 
 
   // Code Form
   const codeForm = useForm<z.infer<typeof CodeFormSchema>>({
@@ -98,6 +112,17 @@ function Listfilter({ onFiltersChange }: ListfilterProps) {
     },
   });
 
+   const [priceRange, setPriceRange] = useState<[number, number]>([
+  filterForm.getValues("minPrice") || 1000,
+  filterForm.getValues("maxPrice") || 100000000,
+])
+
+ const debouncedPriceRange = useDebounce(priceRange, 400)
+
+useEffect(() => {
+  filterForm.setValue("minPrice", debouncedPriceRange[0])
+  filterForm.setValue("maxPrice", debouncedPriceRange[1])
+}, [debouncedPriceRange])
   // Initialize form values from URL parameters
   useEffect(() => {
     const urlParams = {
@@ -315,20 +340,30 @@ function Listfilter({ onFiltersChange }: ListfilterProps) {
             </span>
           </div>
 
-          <Slider
-            min={1000}
-            max={100000000}
-            step={100000}
-            value={[
-              filterForm.watch("minPrice") || 1000,
-              filterForm.watch("maxPrice") || 100000000,
-            ]}
-            onValueChange={(value) => {
-              filterForm.setValue("minPrice", value[0]);
-              filterForm.setValue("maxPrice", value[1]);
-            }}
-            className="w-full"
-          />
+  {/* <Slider
+    min={1000}
+    max={100000000}
+    step={100000}
+      defaultValue={[1000, 100000000]}
+
+    value={[
+      filterForm.watch("minPrice") || 1000,
+      filterForm.watch("maxPrice") || 100000000,
+    ]}
+    onValueChange={(value) => {
+      filterForm.setValue("minPrice", value[0]);
+      filterForm.setValue("maxPrice", value[1]);
+    }}
+    className="w-full"
+  /> */}
+  <Slider
+  value={priceRange}
+  onValueChange={(val) => setPriceRange(val as [number, number])}
+  min={1000}
+  max={100000000}
+  step={1000}
+  className="w-full"
+/>
 
           <div className="flex justify-between text-xs text-gray-500 px-1 pt-1">
             <span>{t("rs")} 1K</span>

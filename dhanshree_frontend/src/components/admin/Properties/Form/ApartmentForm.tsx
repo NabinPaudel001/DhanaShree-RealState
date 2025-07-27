@@ -42,7 +42,7 @@ const defaultValues: Partial<ApartmentFormValues> = {
   description: "",
   descriptionNp: "",
   status: PropertyStatus.EMERGING,
-  builtYear: 0,
+  builtYear: 1990,
   builtYearNep: "",
   images: [] as unknown as File[],
   thumbnail: new File([""], "placeholder.png", { type: "image/png" }),

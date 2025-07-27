@@ -50,7 +50,7 @@ const defaultValues: Partial<LandFormValues> = {
   images: [] as unknown as File[],
   thumbnail: new File([""], "placeholder.png", { type: "image/png" }),
   facilities: ["parking"],
-  landArea: 10,
+  landArea: 0,
   landAreaUnit: "",
   landAreaNep: "",
   propertyPurpose: "sale",
