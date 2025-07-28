@@ -20,6 +20,13 @@ import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Cookies from "js-cookie";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const navigation = [
   { name: "home", href: "/" },
@@ -181,20 +188,25 @@ function Navbar() {
             {/* Right side items */}
             <div className="flex items-center space-x-3 lg:space-x-4">
               {/* Language Selector */}
-              <div className="hidden sm:flex items-center space-x-2">
+              <div className="hidden sm:flex items-center justify-center space-x-2">
                 <GlobeAltIcon className="h-5 w-5 text-gray-500" />
-                <select
-                  onChange={(e) => {
-                    const selectedLang = e.target.value;
-                    setLang(selectedLang);
-                    changeLanguage(selectedLang);
-                  }}
-                  value={i18n.language}
-                  className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-medium bg-white text-gray-700 hover:border-sky-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 focus:outline-none transition-all duration-200"
-                >
-                  <option value="en">EN</option>
-                  <option value="ne">नेपाली</option>
-                </select>
+          
+    <Select
+      value={i18n.language}
+   onValueChange={(selectedLang) => {
+    setLang(selectedLang); // string value like "en" or "ne"
+    changeLanguage(selectedLang);
+  }}
+    >
+      <SelectTrigger className="w-[120px] text-sm border-gray-300 focus:ring-2 focus:ring-sky-300 focus:border-sky-500">
+        <SelectValue placeholder="Select language" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="en">🇺🇸 English</SelectItem>
+        <SelectItem value="ne">🇳🇵 नेपाली</SelectItem>
+      </SelectContent>
+    </Select>
+
               </div>
 
               {/* Admin Login Button */}
