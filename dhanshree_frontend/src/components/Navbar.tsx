@@ -105,7 +105,7 @@ function Navbar() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex lg:items-center lg:space-x-1 xl:space-x-2">
+            <div className="hidden lg:flex lg:items-center lg:space-x-1 xl:space-x-2 capitalize">
               {navigation.map((item) => {
                 const isCurrent = isCurrentPage(item.href);
                 return (
@@ -150,7 +150,7 @@ function Navbar() {
                             "block px-4 py-3 text-sm font-medium transition-colors duration-150"
                           )}
                         >
-                          Unit Converter
+                          {t("unitConverter")}
                         </Link>
                       )}
                     </MenuItem>
@@ -163,7 +163,7 @@ function Navbar() {
                             "block px-4 py-3 text-sm font-medium transition-colors duration-150"
                           )}
                         >
-                          EMI Calculator
+                          {t("emiCalculator")}
                         </Link>
                       )}
                     </MenuItem>
@@ -176,7 +176,7 @@ function Navbar() {
                             "block px-4 py-3 text-sm font-medium transition-colors duration-150"
                           )}
                         >
-                          Date Converter
+                          {t("dateConverter")}
                         </Link>
                       )}
                     </MenuItem>
@@ -298,6 +298,7 @@ function Navbar() {
                 {t("language")}:
               </span>
               <select
+                aria-label={t("language")}
                 onChange={(e) => {
                   const selectedLang = e.target.value;
                   setLang(selectedLang);

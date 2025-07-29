@@ -154,12 +154,12 @@ export default function PropertyRequest() {
           >
             <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
             <span className="text-sky-700 font-medium text-sm">
-              Property Listing Service
+              {t("propertyListingServices")}
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-sky-600 via-sky-700 to-sky-600 bg-clip-text text-transparent leading-tight mb-6">
-            List Your Property With Us
+            {t("listYourProperty")}
           </h2>
 
           {/* Decorative line */}
@@ -182,9 +182,9 @@ export default function PropertyRequest() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black-600/20 to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="text-2xl font-bold mb-2">List Your Property</h3>
+                <h3 className="text-2xl font-bold mb-2">{t("listYourPropertyWithUs")}</h3>
                 <p className="text-lg opacity-90">
-                  Join thousands of satisfied property owners
+                  {t("joinThousandsOwners")}
                 </p>
               </div>
               {/* Decorative elements */}
@@ -206,14 +206,14 @@ export default function PropertyRequest() {
                   className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-sky-700 data-[state=active]:shadow-lg rounded-lg transition-all duration-300"
                 >
                   <Home className="h-4 w-4" />
-                  Information
+                  {t("information")}
                 </TabsTrigger>
                 <TabsTrigger
                   value="form"
                   className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:text-sky-700 data-[state=active]:shadow-lg rounded-lg transition-all duration-300"
                 >
                   <Send className="h-4 w-4" />
-                  Request Form
+                  {t("requestForm")}
                 </TabsTrigger>
               </TabsList>
 
@@ -221,12 +221,10 @@ export default function PropertyRequest() {
               <TabsContent value="info" className="space-y-6">
                 <div className="text-center space-y-4">
                   <h2 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
-                    Ready to List Your Property?
+                    {t("readyToList")}
                   </h2>
                   <p className="text-lg text-sky-600 leading-relaxed">
-                    Get your property in front of thousands of potential buyers
-                    and renters. Our professional team will help you every step
-                    of the way.
+                    {t("getStartedWithParagraph")}
                   </p>
                 </div>
 
@@ -235,10 +233,10 @@ export default function PropertyRequest() {
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-sky-700">
-                        Professional Photography
+                        {t("professionalPhoto")}
                       </h4>
                       <p className="text-sky-600 text-sm">
-                        High-quality photos to showcase your property
+                        {t("highQualityPhotos")}
                       </p>
                     </div>
                   </div>
@@ -247,10 +245,10 @@ export default function PropertyRequest() {
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-sky-700">
-                        Market Analysis
+                        {t("marketAnalysis")}
                       </h4>
                       <p className="text-sky-600 text-sm">
-                        Competitive pricing based on market data
+                        {t("competitivePricing")}
                       </p>
                     </div>
                   </div>
@@ -259,10 +257,10 @@ export default function PropertyRequest() {
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-sky-700">
-                        Wide Exposure
+                        {t("wideExposure")}
                       </h4>
                       <p className="text-sky-600 text-sm">
-                        Listed on multiple platforms and networks
+                       {t("listedOnMultiplePlatforms")}
                       </p>
                     </div>
                   </div>
@@ -271,10 +269,10 @@ export default function PropertyRequest() {
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
                       <h4 className="font-semibold text-sky-700">
-                        Expert Support
+                        {t("expertSupport")}
                       </h4>
                       <p className="text-sky-600 text-sm">
-                        Dedicated agent to handle all inquiries
+                        {t("dedicatedTeam")}
                       </p>
                     </div>
                   </div>
@@ -287,7 +285,7 @@ export default function PropertyRequest() {
                     className="group relative px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
                   >
                     <span className="flex items-center">
-                      Request Now
+                      {t("requestNow")}
                       <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                     {/* Button shine effect */}
@@ -300,11 +298,10 @@ export default function PropertyRequest() {
               <TabsContent value="form" className="space-y-6">
                 <div className="text-center space-y-2">
                   <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
-                    Submit Your Request
+                    {t("submitRequest")}
                   </h2>
                   <p className="text-sky-600">
-                    Fill out the form below and we'll get back to you within 24
-                    hours
+                   {t("fillOutTheForm")}
                   </p>
                 </div>
 
@@ -314,20 +311,19 @@ export default function PropertyRequest() {
                     <div className="flex items-center gap-2 mb-3">
                       <Mail className="h-5 w-5 text-green-600" />
                       <h4 className="font-semibold text-green-800">
-                        Request Submitted Successfully!
+                        {t("requestSuccess")}
                       </h4>
                     </div>
                     <p className="text-green-700 text-sm mb-4">
-                      A verification email has been sent to{" "}
-                      <strong>{lastRequestResponse.data?.email}</strong>. Please
-                      check your inbox and click the verification link.
+                     {t("aVerifyEmail")} {" "}
+                      <strong>{lastRequestResponse.data?.email}</strong>.{t("checkYourEmail")}
                     </p>
 
                     {!canResend && resendTimer > 0 && (
                       <div className="flex items-center gap-2 text-orange-600 mb-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
                         <Clock className="h-4 w-4" />
                         <span className="text-sm">
-                          Resend available in:{" "}
+                          {t("resendAvailable")}{" "}
                           <strong>{formatTime(resendTimer)}</strong>
                         </span>
                       </div>
@@ -344,12 +340,12 @@ export default function PropertyRequest() {
                         {isResending ? (
                           <>
                             <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
-                            Resending...
+                            {t("resending")}
                           </>
                         ) : (
                           <>
                             <Mail className="h-4 w-4 mr-2" />
-                            Resend Verification Email
+                            {t("resendLink")}
                           </>
                         )}
                       </Button>
