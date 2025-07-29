@@ -127,8 +127,18 @@
     "paisa": "पैसा",
     "daam": "दाम",
     "ropani": "रोपनी"
+  },
+   "facilities":{
+     "water supply": "पानीको आपूर्ति",
+  "drainage": "नाली",
+  "electricity": "बिजुली",
+  "internet": "इन्टरनेट",
+  "parking": "पार्किङ",
+  "security": "सुरक्षा",
+  "garden": "बगैचा",
+  "swimming pool": "स्विमिङ पूल",
+  "gym": "जिम",
+  "elevator": "लिफ्ट"
+}
   }
 }
-
-  }
-  

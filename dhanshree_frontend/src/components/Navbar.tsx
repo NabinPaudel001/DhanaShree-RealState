@@ -73,7 +73,7 @@ function Navbar() {
     <>
       <Disclosure
         as="nav"
-        className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50"
+        className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-[999999]"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative flex h-16 lg:h-20 items-center justify-between">

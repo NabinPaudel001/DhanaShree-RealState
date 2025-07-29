@@ -133,7 +133,7 @@ function Overview({
             </h1>
           </div>
 
-          <div className="flex flex-wrap gap-10">
+          <div className="flex flex-wrap gap-8">
             {propertyDetails.map((item, index) => (
               <div key={index} className="flex gap-3 items-center">
                 <div className="flex flex-col gap-1 text-gray-500">
@@ -162,7 +162,7 @@ function Overview({
 
         <div className="flex flex-col gap-5 bg-sky-100 p-4 rounded-lg shadow">
           <h1 className="font-medium py-4">Property Details</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
             {propertyDetails.map((item, index) => (
               <div key={index} className="grid grid-cols-2">
                 <p className="text-gray-400  pr-2">{item.label}</p>
