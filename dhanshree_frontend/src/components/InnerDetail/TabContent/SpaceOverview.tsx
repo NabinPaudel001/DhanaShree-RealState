@@ -23,7 +23,7 @@ export default function SpaceOverview({
   isLoading: boolean;
   error: any;
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Helper function to format numbers based on language
   const formatNumber = (value: any) => {
@@ -39,54 +39,45 @@ export default function SpaceOverview({
   };
 
   const features = [
-    {
-      label: "Area",
-      value: `${formatNumber(property.details.landArea.value)}${
-        property.details.landArea.unit
-      }`,
-      icon: faRulerCombined,
-    },
-    {
-      label: "Frontage",
-      value: `${formatNumber(property.details.frontage.value)}${
-        property.details.frontage.unit
-      }`,
-      icon: faRoad,
-    },
-    {
-      label: "Floor Number",
-      value: formatNumber(property.details.floors),
-      icon: faStairs,
-    },
-    {
-      label: "Built Year",
-      value: formatNumber(property.details.builtYear),
-      icon: faCalendarAlt,
-    },
-  ];
+  {
+    label: t("spaceListing.features.area"),
+    value: `${formatNumber(property.details.landArea.value)}${property.details.landArea.unit}`,
+    icon: faRulerCombined,
+  },
+  {
+    label: t("spaceListing.features.frontage"),
+    value: `${formatNumber(property.details.frontage.value)}${property.details.frontage.unit}`,
+    icon: faRoad,
+  },
+  {
+    label: t("spaceListing.features.floor_number"),
+    value: formatNumber(property.details.floors),
+    icon: faStairs,
+  },
+  {
+    label: t("spaceListing.features.built_year"),
+    value: formatNumber(property.details.builtYear),
+    icon: faCalendarAlt,
+  },
+];
 
-  const propertyDetails = [
-    { label: "Space ID", value: formatNumber(property.propertyCode) },
-    { label: "Facing", value: property.details.facing },
-    { label: "Purpose", value: property.purpose },
-    { label: "Floor", value: formatNumber(property.details.floors) },
-    {
-      label: "Access Road",
-      value: `${formatNumber(property.details.frontage.value)} ${
-        property.details.frontage.unit
-      }`,
-    },
-    {
-      label: "Total Area",
-      value: `${formatNumber(property.details.landArea.value)} ${
-        property.details.landArea.unit
-      }`,
-    },
-    { label: "Rent/Month", value: `Rs ${formatPrice(property.price)}` },
-    { label: "Date Listed", value: "२०२५-०५-०१" }, // Static date in Nepali if needed
-    { label: "Status", value: property.status ? "Available" : "Not Available" },
-  ];
-
+const propertyDetails = [
+  { label: t("spaceListing.details.space_id"), value: formatNumber(property.propertyCode) },
+  { label: t("spaceListing.details.facing"), value: property.details.facing },
+  { label: t("spaceListing.details.purpose"), value: property.purpose },
+  { label: t("spaceListing.details.floor"), value: formatNumber(property.details.floors) },
+  {
+    label: t("spaceListing.details.access_road"),
+    value: `${formatNumber(property.details.frontage.value)} ${property.details.frontage.unit}`,
+  },
+  {
+    label: t("spaceListing.details.total_area"),
+    value: `${formatNumber(property.details.landArea.value)} ${property.details.landArea.unit}`,
+  },
+  { label: t("spaceListing.details.rent_per_month"), value: `Rs ${formatPrice(property.price)}` },
+  { label: t("spaceListing.details.date_listed"), value: "२०२५-०५-०१" },
+  { label: t("spaceListing.details.status"), value: property.status ? "Available" : "Not Available" },
+];
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading property details.</div>;
 
@@ -94,9 +85,9 @@ export default function SpaceOverview({
     <div className="flex flex-col gap-4">
       <div className="bg-white p-4 rounded-lg shadow">
         <div className="flex justify-between py-6">
-          <h1 className="font-medium">Overview</h1>
+          <h1 className="font-medium">{t("overview")}</h1>
           <h1>
-            <span className="font-semibold">Space ID:</span> [
+            <span className="font-semibold">{t("spaceId")}:</span> [
             {formatNumber(property.propertyCode)}]
           </h1>
         </div>
@@ -123,7 +114,7 @@ export default function SpaceOverview({
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow">
-        <h1 className="font-medium py-4">Description</h1>
+        <h1 className="font-medium py-4">{t("desc")}</h1>
         <p className="text-gray-500 font-light">
           Well-maintained commercial space in a prime location with modern
           amenities.
@@ -131,7 +122,7 @@ export default function SpaceOverview({
       </div>
 
       <div className="flex flex-col gap-5 bg-sky-100 p-4 rounded-lg shadow">
-        <h1 className="font-medium py-4">Space Details</h1>
+        <h1 className="font-medium py-4">{t("spaceDetails")}</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
           {propertyDetails.map((item, index) => (
             <div key={index} className="grid grid-cols-2">

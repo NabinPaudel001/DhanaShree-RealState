@@ -22,7 +22,7 @@ function ApartmentOverview({
   error: any;
   property: fetchPropertyDetails;
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Helper function to format numbers based on language
   const formatNumber = (value: any) => {
@@ -48,73 +48,84 @@ function ApartmentOverview({
   if (error) return <div>Error loading property details.</div>;
   if (!property) return <div>No property data available.</div>;
 
-  const features = [
-    { label: "BHK", value: property.details.apartmentType, icon: faBed },
-    {
-      label: "Built Area",
-      value: `${formatNumber(property.details?.builtInArea?.value)} ${
-        property.details?.builtInArea?.unit
-      }`,
-      icon: faRulerCombined,
-    },
-    {
-      label: "Floor",
-      value: formatNumber(property.details.floors),
-      icon: faArrowUpRightFromSquare,
-    },
-    {
-      label: "Furnished Type",
-      value: property.details.furnishing,
-      icon: faCouch,
-    },
-    {
-      label: "Built Year",
-      value: formatNumber(property.details.builtYear),
-      icon: faCalendarAlt,
-    },
-  ];
+ const features = [
+  {
+    label: t("apartmentProperty.features.bhk"),
+    value: property.details.apartmentType,
+    icon: faBed,
+  },
+  {
+    label: t("apartmentProperty.features.built_area"),
+    value: `${formatNumber(property.details?.builtInArea?.value)} ${property.details?.builtInArea?.unit}`,
+    icon: faRulerCombined,
+  },
+  {
+    label: t("apartmentProperty.features.floor"),
+    value: formatNumber(property.details.floors),
+    icon: faArrowUpRightFromSquare,
+  },
+  {
+    label: t("apartmentProperty.features.furnished_type"),
+    value: property.details.furnishing,
+    icon: faCouch,
+  },
+  {
+    label: t("apartmentProperty.features.built_year"),
+    value: formatNumber(property.details.builtYear),
+    icon: faCalendarAlt,
+  },
+];
 
-  const propertyDetails = [
-    { label: "Apartment ID", value: formatNumber(property.propertyCode) },
-    { label: "Property Face", value: property.details.facing },
-    { label: "Total Floors", value: formatNumber(property.details.floors) },
-    {
-      label: "Total Area",
-      value: `${formatNumber(property.details.landArea.value)} ${
-        property.details.landArea.unit
-      }`,
-    },
-    {
-      label: "Built Up Area",
-      value: `${formatNumber(property.details?.builtInArea?.value)} ${
-        property.details?.builtInArea?.unit
-      }`,
-    },
-    {
-      label: "Date Posted",
-      value: formatDate(property.createdAt),
-    },
-    {
-      label: "Price",
-      value: property.price ? `Rs ${formatPrice(property.price)}` : "N/A",
-    },
-    { label: "Status", value: property.status },
-    { label: "Purpose", value: property.purpose },
-    {
-      label: "Road Access",
-      value: `${formatNumber(property.details.frontage.value)} ${
-        property.details.frontage.unit
-      }`,
-    },
-  ];
+const propertyDetails = [
+  {
+    label: t("apartmentProperty.details.apartment_id"),
+    value: formatNumber(property.propertyCode),
+  },
+  {
+    label: t("apartmentProperty.details.property_face"),
+    value: property.details.facing,
+  },
+  {
+    label: t("apartmentProperty.details.total_floors"),
+    value: formatNumber(property.details.floors),
+  },
+  {
+    label: t("apartmentProperty.details.total_area"),
+    value: `${formatNumber(property.details.landArea.value)} ${property.details.landArea.unit}`,
+  },
+  {
+    label: t("apartmentProperty.details.built_up_area"),
+    value: `${formatNumber(property.details?.builtInArea?.value)} ${property.details?.builtInArea?.unit}`,
+  },
+  {
+    label: t("apartmentProperty.details.date_posted"),
+    value: formatDate(property.createdAt),
+  },
+  {
+    label: t("apartmentProperty.details.price"),
+    value: property.price ? `Rs ${formatPrice(property.price)}` : "N/A",
+  },
+  {
+    label: t("apartmentProperty.details.status"),
+    value: property.status, // assumes `status` is defined in your i18n
+  },
+  {
+    label: t("apartmentProperty.details.purpose"),
+    value: property.purpose, // assumes `purpose` is defined in your i18n
+  },
+  {
+    label: t("apartmentProperty.details.road_access"),
+    value: `${formatNumber(property.details.frontage.value)} ${property.details.frontage.unit}`,
+  },
+];
 
   return (
     <div className="flex flex-col gap-4">
       <div className="bg-white p-4 rounded-lg shadow">
         <div className="flex justify-between py-6">
-          <h2 className="font-medium text-lg">Overview</h2>
+          <h2 className="font-medium text-lg">{t("overview")}</h2>
           <h2>
-            <span className="font-semibold">Apartment ID:</span>{" "}
+            <span className="font-semibold">{t("apartmentId")}:</span>{" "}
             {formatNumber(property.propertyCode)}
           </h2>
         </div>
@@ -141,14 +152,14 @@ function ApartmentOverview({
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow">
-        <h2 className="font-medium py-4">Description</h2>
+        <h2 className="font-medium py-4">{t("desc")}</h2>
         <p className="text-gray-500 font-light">
           {property.details.description.en || "No description available."}
         </p>
       </div>
 
       <div className="flex flex-col gap-5 bg-sky-100 p-4 rounded-lg shadow">
-        <h2 className="font-medium py-4">Apartment Details</h2>
+        <h2 className="font-medium py-4">{t("apartmentDetails")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
           {propertyDetails.map((item, index) => (
             <div key={index} className="grid grid-cols-2">

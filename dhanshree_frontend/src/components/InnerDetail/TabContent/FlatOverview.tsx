@@ -20,7 +20,7 @@ export default function FlatOverview({
   isLoading: boolean;
   error: any;
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Helper function to format numbers based on language
   const formatNumber = (value: any) => {
@@ -44,74 +44,85 @@ export default function FlatOverview({
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading property details.</div>;
+const features = [
+  {
+    label: t("listedFlat.features.bedrooms"),
+    value: formatNumber(property.details.bedrooms),
+    icon: faBed,
+  },
+  {
+    label: t("listedFlat.features.bathrooms"),
+    value: formatNumber(property.details.bathrooms),
+    icon: faBath,
+  },
+  {
+    label: t("listedFlat.features.built_area"),
+    value: `${formatNumber(property.details.builtInArea?.value)} ${property.details.builtInArea?.unit}`,
+    icon: faRulerCombined,
+  },
+  {
+    label: t("listedFlat.features.floor_number"),
+    value: formatNumber(property.details.floors),
+    icon: faArrowUpRightFromSquare,
+  },
+  {
+    label: t("listedFlat.features.built_year"),
+    value: formatNumber(property.details.builtYear),
+    icon: faCalendarAlt,
+  },
+  {
+    label: t("listedFlat.features.flat_type"),
+    value: property.details.apartmentType,
+    icon: faBuilding,
+  },
+];
 
-  const features = [
-    {
-      label: "Bedrooms",
-      value: formatNumber(property.details.bedrooms),
-      icon: faBed,
-    },
-    {
-      label: "Bathrooms",
-      value: formatNumber(property.details.bathrooms),
-      icon: faBath,
-    },
-    {
-      label: "Built in Area",
-      value: `${formatNumber(property.details.builtInArea?.value)} ${
-        property.details.builtInArea?.unit
-      }`,
-      icon: faRulerCombined,
-    },
-    {
-      label: "Floor Number",
-      value: formatNumber(property.details.floors),
-      icon: faArrowUpRightFromSquare,
-    },
-    {
-      label: "Built Year",
-      value: formatNumber(property.details.builtYear),
-      icon: faCalendarAlt,
-    },
-    {
-      label: "Flat Type",
-      value: property.details.apartmentType,
-      icon: faBuilding,
-    },
-  ];
-
-  const propertyDetails = [
-    { label: "Flat ID", value: formatNumber(property.propertyCode) },
-    { label: "Facing", value: property.details.facing },
-    {
-      label: "Total Floors",
-      value: formatNumber(property.details.totalFloors),
-    },
-    { label: "Purpose", value: property.purpose },
-    {
-      label: "Total Area",
-      value: `${formatNumber(property.details.landArea.value)} ${
-        property.details.landArea.unit
-      }`,
-    },
-    {
-      label: "Built Up Area",
-      value: `${formatNumber(property.details.builtInArea?.value)} ${
-        property.details.builtInArea?.unit
-      }`,
-    },
-    { label: "Date Posted", value: formatDate(property.createdAt) },
-    { label: "Price", value: `Rs ${formatPrice(property.price)}` },
-    { label: "Status", value: property.status },
-  ];
+const propertyDetails = [
+  {
+    label: t("listedFlat.details.flat_id"),
+    value: formatNumber(property.propertyCode),
+  },
+  {
+    label: t("listedFlat.details.facing"),
+    value: property.details.facing,
+  },
+  {
+    label: t("listedFlat.details.total_floors"),
+    value: formatNumber(property.details.totalFloors),
+  },
+  {
+    label: t("listedFlat.details.purpose"),
+    value: t(`purpose.${property.purpose}`), // Assuming `purpose` exists globally
+  },
+  {
+    label: t("listedFlat.details.total_area"),
+    value: `${formatNumber(property.details.landArea.value)} ${property.details.landArea.unit}`,
+  },
+  {
+    label: t("listedFlat.details.built_up_area"),
+    value: `${formatNumber(property.details.builtInArea?.value)} ${property.details.builtInArea?.unit}`,
+  },
+  {
+    label: t("listedFlat.details.date_posted"),
+    value: formatDate(property.createdAt),
+  },
+  {
+    label: t("listedFlat.details.price"),
+    value: property.price ? `Rs ${formatPrice(property.price)}` : "N/A",
+  },
+  {
+    label: t("listedFlat.details.status"),
+    value: property.status,
+  },
+];
 
   return (
     <div className="flex flex-col gap-4">
       <div className="bg-white p-4 rounded-lg shadow">
         <div className="flex justify-between py-6">
-          <h1 className="font-medium">Overview</h1>
+          <h1 className="font-medium">{t("overview")}</h1>
           <h1>
-            <span className="font-semibold">Flat ID:</span> [
+            <span className="font-semibold">{t("flatId")}:</span> [
             {formatNumber(property.propertyCode)}]
           </h1>
         </div>
@@ -138,7 +149,7 @@ export default function FlatOverview({
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow">
-        <h1 className="font-medium py-4">Description</h1>
+        <h1 className="font-medium py-4">{t("desc")}</h1>
         <p className="text-gray-500 font-light">
           {property.details.description.en ||
             "No description available for this flat."}
@@ -146,7 +157,7 @@ export default function FlatOverview({
       </div>
 
       <div className="flex flex-col gap-5 bg-sky-100 p-4 rounded-lg shadow">
-        <h1 className="font-medium py-4">Flat Details</h1>
+        <h1 className="font-medium py-4">{t("flatDetails")}</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
           {propertyDetails.map((item, index) => (
             <div key={index} className="grid grid-cols-2">

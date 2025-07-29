@@ -11,7 +11,6 @@
     "ourServices": "Our Services",
     "comprehensiveSolution": "Comprehensive Real Estate Solutions",
     "featured": "Featured",
-    "services": "Services",
     "all": "All",
     "exclusive": "Exclusive",
     "emerging": "Emerging",
@@ -45,6 +44,12 @@
     "type": "Type",
     "location": "Location",
     "price": "Price",
+    "propertyDetails": "Property Details",
+    "apartmentDetails": "Apartment Details",
+    "spaceDetails": "Space Details",
+    "flatDetails": "Flat Details",
+    "interiorDetails": "Interior Details",
+    "propertyInterior": "Property Interior Details",
     "priceHighToLow": "Price - High to Low",
     "priceLowToHigh": "Price - Low to High",
     "dateNewToOld": "Date - New to Old",
@@ -71,6 +76,9 @@
     "in": "in",
     "road": "road",
     "area": "area",
+    "Area": "Area",
+    "desc": "Description",
+    "landDetails": "Land Details",
     "exploreByCategory": "Explore by Category",
     "listings": "Listings",
     "previous": "Previous",
@@ -78,6 +86,8 @@
     "filters": "Other Filters",
     "rs": "Rs",
     "overview": "Overview",
+    "landId": "Land ID",
+    "propertyId": "Property ID",
     "facilities": "Facilities",
     "yourName": "Your Name",
     "yourEmail": "Your Email",
@@ -116,7 +126,86 @@
     "dateConverter": "Date Converter",
     "emiCalculator": "EMI Calculator",
     "learnMore": "Learn More",
+
+    "landType": "Land Type",
+    "listedYear": "Listed Year",
     "trustedRealEstate": "Trusted Real Estate",
+    "houseFacilities": {
+      "yearBuilt": "Year Built",
+      "roadAccess": "Road Access",
+      "propertyArea": "Property Area",
+      "builtUpArea": "Built-up Area",
+      "datePosted": "Date Posted",
+      "pricing": "Pricing"
+    },
+    "landFacilities": {
+      "facing": "Facing",
+      "purpose": "Purpose",
+      "landArea": "Land Area",
+      "price": "Price",
+      "status": "Status"
+    },
+  "apartmentProperty": {
+    "features": {
+      "bhk": "BHK",
+      "built_area": "Built Area",
+      "floor": "Floor",
+      "furnished_type": "Furnished Type",
+      "built_year": "Built Year"
+    },
+    "details": {
+      "apartment_id": "Apartment ID",
+      "property_face": "Property Face",
+      "total_floors": "Total Floors",
+      "total_area": "Total Area",
+      "built_up_area": "Built Up Area",
+      "date_posted": "Date Posted",
+      "price": "Price",
+      "status": "Status",
+      "purpose": "Purpose",
+      "road_access": "Road Access"
+    }
+  },
+  "listedFlat": {
+    "features": {
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "built_area": "Built in Area",
+      "floor_number": "Floor Number",
+      "built_year": "Built Year",
+      "flat_type": "Flat Type"
+    },
+    "details": {
+      "flat_id": "Flat ID",
+      "facing": "Facing",
+      "total_floors": "Total Floors",
+      "purpose": "Purpose",
+      "total_area": "Total Area",
+      "built_up_area": "Built Up Area",
+      "date_posted": "Date Posted",
+      "price": "Price",
+      "status": "Status"
+    }
+  },
+"spaceListing": {
+    "features": {
+      "area": "Area",
+      "frontage": "Frontage",
+      "floor_number": "Floor Number",
+      "built_year": "Built Year"
+    },
+    "details": {
+      "space_id": "Space ID",
+      "facing": "Facing",
+      "purpose": "Purpose",
+      "floor": "Floor",
+      "access_road": "Access Road",
+      "total_area": "Total Area",
+      "rent_per_month": "Rent/Month",
+      "date_listed": "Date Listed",
+      "status": "Status"
+    }
+  },
   "enum": {
     "type": {
       "land": "Land",
@@ -149,6 +238,13 @@
     "daam": "Daam",
     "ropani": "Ropani"
   }
+  },
+  "intPropertyDetails": {
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "livingRooms": "Living Rooms",
+    "furnishing": "Furnishing",
+    "parking": "Parking"
   },
   "getStartedWithParagraph":"  Get your property in front of thousands of potential buyers and renters. Our professional team will help you every step of the way.",
   "listYourPropertyWithUs": "List Your Property" ,
