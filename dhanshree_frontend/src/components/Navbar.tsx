@@ -201,7 +201,7 @@ function Navbar() {
       <SelectTrigger className="w-[120px] text-sm border-gray-300 focus:ring-2 focus:ring-sky-300 focus:border-sky-500">
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-[999999999]">
         <SelectItem value="en">🇺🇸 English</SelectItem>
         <SelectItem value="ne">🇳🇵 नेपाली</SelectItem>
       </SelectContent>
