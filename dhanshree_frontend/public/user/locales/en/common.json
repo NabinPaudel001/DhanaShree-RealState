@@ -237,6 +237,18 @@
     "paisa": "Paisa",
     "daam": "Daam",
     "ropani": "Ropani"
+  },
+  "facilities":{
+     "water supply": "Water Supply",
+  "drainage": "Drainage",
+  "electricity": "Electricity",
+  "internet": "Internet",
+  "parking": "Parking",
+  "security": "Security",
+  "garden": "Garden",
+  "swimming pool": "Swimming Pool",
+  "gym": "Gym",
+  "elevator": "Elevator"
   }
   },
   "intPropertyDetails": {

@@ -29,6 +29,7 @@ export interface TransformedSpaceFormData {
       en: string;
       np: string;
     };
+  
     facing: string;
     facilities: string[];
     furnishing: string;
@@ -60,11 +61,13 @@ export const transformSpaceForm = (
         unit: data.landAreaUnit,
         value: Number(data.landArea),
       },
+   
       frontage: {
         unit: data.frontageUnit,
         value: Number(data.frontage),
       },
       builtYear: data.builtYear ? Number(data.builtYear) : null,
+
       description: {
         en: data.description,
         np: data.descriptionNp ?? "",
@@ -72,8 +75,7 @@ export const transformSpaceForm = (
       facing: data.facing,
       facilities: data.facilities ?? [],
       furnishing: data.furnished,
-      zoning: data.zoning, // Optional field, can be undefined
-      // ceilingHeight: Number(data.ceilingHeight),
+      zoning: data.zoning, 
     },
   };
   if (!edit) {

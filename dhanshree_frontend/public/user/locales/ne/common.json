@@ -8,8 +8,8 @@
     "loginAsAdmin": "प्रशासक लगइन",
     "home": "होम",
     "services": "सेवाहरू",
-    "ourServices": "हाम्रा सेवाहरू",
     "comprehensiveSolution": "पुर्ण रियल एस्टेट समाधान",
+    "ourServices": "हाम्रा सेवाहरू",
     "featured": "विशेष",
     "all": "सबै",
     "exclusive": "विशेष",
@@ -64,6 +64,7 @@
     "viewTheLatestProperties": "नवीनतम सम्पतिहरू हेर्नुहोस्",
     "propertyListingServices": "सम्पत्ति सूची सेवाहरू",
     "readyToList": "तँपाईको सम्पत्ति सूचीबद्ध गर्न तयार हुनुहुन्छ?",
+
     "viewAll": "सबै हेर्नुहोस्",
     "errorFetchingPosts": "घरहरू प्राप्त गर्न सकिएन",
     "viewAllProperties": "सबै घरहरू हेर्नुहोस्",
@@ -435,6 +436,5 @@
   "1hectare": "१ हेक्टर = १,०७,६४० वर्ग फिट",
   "ropaniToAcre": "१ रूपनी ≈ ०.१३ एकर"
 
-
-  }
-  
+}
+ 

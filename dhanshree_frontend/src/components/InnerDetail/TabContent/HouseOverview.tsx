@@ -133,7 +133,7 @@ function Overview({
             </h1>
           </div>
 
-          <div className="flex flex-wrap gap-10">
+          <div className="flex flex-wrap gap-8">
             {propertyDetails.map((item, index) => (
               <div key={index} className="flex gap-3 items-center">
                 <div className="flex flex-col gap-1 text-gray-500">

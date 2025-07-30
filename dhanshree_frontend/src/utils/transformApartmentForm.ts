@@ -27,10 +27,16 @@ export interface TransformedApartmentFormData {
       unit: string;
       value: number;
     };
+     builtInArea: {
+      unit: string;
+      value: number;
+    };
     description: {
       en: string;
       np: string;
     };
+    furnishing: string;
+
   };
 }
 
@@ -61,6 +67,10 @@ export const transformApartmentForm = (
         unit: data.landAreaUnit,
         value: Number(data.landArea),
       },
+       builtInArea: {
+        unit: data.builtAreaUnit,
+        value: Number(data.builtArea),
+      },
       frontage: {
         unit: data.frontageUnit,
         value: Number(data.frontage),
@@ -69,7 +79,9 @@ export const transformApartmentForm = (
         en: data.description,
         np: data.descriptionNp ?? "",
       },
+      furnishing: data.furnished,
     },
+
   };
   if (!edit) {
     baseData.normalImageIds = uploadedImageIds ?? [];

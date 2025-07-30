@@ -81,7 +81,7 @@ function PropertyDetailsPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-sky-50 via-white to-sky-50 p-4 sm:p-6 lg:p-20 min-h-screen">
+      <section className=" p-4 sm:p-6 lg:p-20 min-h-screen">
         <div className="max-w-7xl mx-auto">
           {/* Enhanced Breadcrumb */}
           <Breadcrumb className="pb-6 lg:pb-10">
@@ -102,7 +102,7 @@ function PropertyDetailsPage() {
           </Breadcrumb>
 
           {/* Property Header */}
-          <div className="flex flex-col gap-4 mb-6 lg:mb-8">
+          <div className="flex flex-col gap-2 mb-6 lg:mb-8">
             {/* Status and Type Badges */}
             <div className="flex flex-wrap gap-2 items-center">
               <button className="bg-gradient-to-r from-green-600 to-green-700 text-white text-xs sm:text-sm rounded-xl px-3 py-1.5 font-medium shadow-lg">
@@ -116,7 +116,7 @@ function PropertyDetailsPage() {
             {/* Title and Price */}
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
               <div className="flex flex-col gap-2">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-sky-600 via-sky-700 to-sky-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold  text-sky-600 bg-clip-text ">
                   {t("propertyCode")}: [{selectedPost?.propertyCode}]
                 </h1>
               </div>
@@ -127,7 +127,9 @@ function PropertyDetailsPage() {
           </div>
 
           {/* Location */}
-          <div className="flex justify-start items-center gap-2 text-sky-600 mb-6 lg:mb-10 bg-white p-4 rounded-2xl shadow-lg border border-sky-100">
+          <div className="flex justify-start
+           items-center gap-2 text-sky-600 mb-6 lg:mb-10 bg-white p-4 
+          ">
             <FontAwesomeIcon
               icon={faLocationDot}
               className="text-sky-500 flex-shrink-0"

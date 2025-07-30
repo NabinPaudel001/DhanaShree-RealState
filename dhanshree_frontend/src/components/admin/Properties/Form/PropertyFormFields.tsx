@@ -53,11 +53,12 @@ export const PropertyFormFields: React.FC<PropertyFormFieldsProps> = ({
                     <Select
                       onValueChange={formField.onChange}
                       defaultValue={formField.value}
+
                     >
-                      <SelectTrigger className={className}>
-                        <SelectValue placeholder={field.placeholder} />
+                      <SelectTrigger className={`w-full ${className}`}>
+                        <SelectValue placeholder={field.placeholder} className="w-full"/>
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="w-full ">
                         {field.options?.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}

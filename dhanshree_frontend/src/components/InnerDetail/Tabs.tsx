@@ -201,8 +201,8 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-sky-50 transition-colors"
               >
                 <span className="text-green-500 font-bold text-lg">✓</span>
-                <p className="text-sky-700 text-sm lg:text-base">{facility}</p>
-              </div>
+                <p className="text-sky-700 text-sm lg:text-base">{t(`enum.facilities.${facility}`)}</p>
+              </div>  
             )
           )}
         </div>
