@@ -250,6 +250,7 @@
   "gym": "Gym",
   "elevator": "Elevator"
   }
+
   },
   "intPropertyDetails": {
     "bedrooms": "Bedrooms",
@@ -258,6 +259,12 @@
     "furnishing": "Furnishing",
     "parking": "Parking"
   },
+"full":"Full-Furnished",
+"semi":"Semi-Furnished",
+"unfurnished":"Unfurnished",
+
+
+
   "getStartedWithParagraph":"  Get your property in front of thousands of potential buyers and renters. Our professional team will help you every step of the way.",
   "listYourPropertyWithUs": "List Your Property" ,
   "joinThousandsOwners": "Join thousands of satisfied property owners",

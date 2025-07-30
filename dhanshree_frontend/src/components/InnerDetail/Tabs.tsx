@@ -41,11 +41,11 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
   },
   {
     label: t("intPropertyDetails.furnishing"),
-    value: property.details.furnishing,
+    value: t( `${property.details.furnishing}}`),
   },
   {
     label: t("intPropertyDetails.parking"),
-    value: property.details.parking,
+    value: formatNumber(property.details.parking),
   },
 ];
 
