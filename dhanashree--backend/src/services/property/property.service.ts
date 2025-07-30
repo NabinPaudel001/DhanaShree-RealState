@@ -223,9 +223,10 @@ class PropertyService {
         property.propertyCode = code
       }
       if (data.price !== undefined) property.price = data.price
-      if (data.type) property.type = data.type
-      if (data.status) property.status = data.status
-      if (data.purpose) property.purpose = data.purpose
+      if (data.type !== undefined) property.type = data.type
+      if (data.status !== undefined) property.status = data.status
+      if (data.purpose !== undefined) property.purpose = data.purpose
+
       if (data.details) {
         const updatedDetails = {
           ...property.details,
@@ -276,13 +277,8 @@ class PropertyService {
     })
     if (!property) throw HttpException.notFound(Message.notFound)
 
-    // Delete images from Cloudinary
-    for (const image of property.images) {
-      await cloudinaryService.deleteByUrl(image.url)
-    }
-
     // Delete the property
-    return await this.propertyRepository.remove(property)
+    return await this.propertyRepository.softRemove(property)
   }
   async getProvinces() {}
 }
