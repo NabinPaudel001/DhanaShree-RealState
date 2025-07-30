@@ -58,12 +58,9 @@ class PropertyController {
 
   async update(req: Request, res: Response) {
     const propertyId = req.params.id
-    const adminId = req.user?.id
-
-    if (!adminId) throw HttpException.unauthorized(Message.unAuthorized)
 
     const data = req.body
-    await propertyService.update(propertyId, adminId, data)
+    await propertyService.update(propertyId, data)
 
     return res.status(StatusCodes.SUCCESS).json({
       success: true,

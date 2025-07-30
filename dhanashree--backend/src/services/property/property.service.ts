@@ -183,7 +183,7 @@ class PropertyService {
     return property
   }
 
-  async update(propertyId: string, adminId: string, data: UpdatePropertyDTO) {
+  async update(propertyId: string, data: UpdatePropertyDTO) {
     return await AppDataSource.transaction(async (manager) => {
       const property = await manager.findOne(Property, {
         where: { id: propertyId },
@@ -208,7 +208,7 @@ class PropertyService {
 
       // Manually assign core fields
       // Check for duplicate property code
-      if (data.propertyCode) {
+      if (data.propertyCode !== undefined) {
         const code = data.propertyCode.toUpperCase()
 
         const existingPropertyWithCode = await manager.findOne(Property, {

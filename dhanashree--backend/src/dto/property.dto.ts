@@ -157,23 +157,24 @@ export class CreatePropertyDTO {
 
 export class UpdatePropertyDTO {
   @IsOptional()
+  @IsNotEmpty()
   @IsString()
   propertyCode?: string
 
   @IsOptional()
-  @IsNumber()
+  @IsNumber({}, { message: 'Price must be a valid number' })
   price?: number
 
   @IsOptional()
-  @IsEnum(PropertyType)
+  @IsEnum(PropertyType, { message: 'Type must be a valid Property Type' })
   type?: PropertyType
 
   @IsOptional()
-  @IsEnum(PropertyStatus)
+  @IsEnum(PropertyStatus, { message: 'Status must be a valid Property Status' })
   status?: PropertyStatus
 
   @IsOptional()
-  @IsEnum(Purpose)
+  @IsEnum(Purpose, { message: 'Purpose must be a valid Purpose' })
   purpose?: Purpose
 
   @IsOptional()
