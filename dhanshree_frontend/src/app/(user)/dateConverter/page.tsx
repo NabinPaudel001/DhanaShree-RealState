@@ -7,28 +7,64 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRightLeft, CalendarDays } from "lucide-react";
 import ConverterHeader from "@/components/ConverterHeader";
+import { ad2bs, bs2ad } from "hamro-nepali-patro";
+import { DatePicker } from "hamro-nepali-patro";
+import "hamro-nepali-patro/dist/styles.css";
 
-// Simple date conversion functions (you can replace with a proper library)
+// Helper: parse "YYYY-MM-DD" to { year, month, date }
+const parseDateString = (dateStr: string) => {
+  const [yearStr, monthStr, dayStr] = dateStr.split("-");
+  return {
+    year: Number(yearStr),
+    month: Number(monthStr),
+    date: Number(dayStr),
+  };
+};
+
+const formatBsDate = (bsObj: { year: number; month: number; date: number }) => {
+  return `${bsObj.year}-${String(bsObj.month).padStart(2, "0")}-${String(bsObj.date).padStart(2, "0")}`;
+};
+
+const formatAdDate = (adObj: { year: number; month: number; date: number }) => {
+  return `${adObj.year}-${String(adObj.month).padStart(2, "0")}-${String(adObj.date).padStart(2, "0")}`;
+};
+
 const englishToNepali = (englishDate: string) => {
-  // This is a simplified conversion - you should use a proper library like nepali-date
-  if (!englishDate) return "";
-  const date = new Date(englishDate);
-  const nepaliYear = date.getFullYear() + 57; // Approximate conversion
-  const nepaliMonth = date.getMonth() + 1;
-  const nepaliDay = date.getDate();
-  return `${nepaliYear}-${nepaliMonth.toString().padStart(2, "0")}-${nepaliDay
-    .toString()
-    .padStart(2, "0")}`;
+  try {
+    if (!englishDate) return "";
+
+    const { year, month, date } = parseDateString(englishDate);
+    const bsDateObj = ad2bs(year, month, date); // returns { year, month, date }
+    return formatBsDate(bsDateObj);
+  } catch (error) {
+    console.error("Error converting English to Nepali:", error);
+    return "";
+  }
 };
 
 const nepaliToEnglish = (nepaliDate: string) => {
-  // This is a simplified conversion - you should use a proper library like nepali-date
-  if (!nepaliDate) return "";
-  const [year, month, day] = nepaliDate.split("-").map(Number);
-  if (!year || !month || !day) return "";
-  const englishYear = year - 57; // Approximate conversion
-  const englishDate = new Date(englishYear, month - 1, day);
-  return englishDate.toISOString().split("T")[0];
+  try {
+    if (!nepaliDate) return "";
+
+    const { year, month, date } = parseDateString(nepaliDate);
+    const adDateObj = bs2ad(year, month, date);
+    return formatAdDate(adDateObj);
+  } catch (error) {
+    console.error("Error converting Nepali to English:", error);
+    return "";
+  }
+};
+
+const getCurrentNepaliDate = () => {
+  try {
+    const today = new Date().toISOString().split("T")[0]; 
+    const { year, month, date } = parseDateString(today);
+    const bsDateObj = ad2bs(year, month, date);
+    return formatBsDate(bsDateObj);
+  } catch (error) {
+    console.error("Error getting current Nepali date:", error);
+    return "";
+  }
 };
 
 export default function DateConverter() {
@@ -39,19 +75,33 @@ export default function DateConverter() {
 
   const handleEnglishDateChange = (value: string) => {
     setEnglishDate(value);
-    setConvertedNepaliDate(englishToNepali(value));
+    const converted = englishToNepali(value);
+    setConvertedNepaliDate(converted);
   };
 
   const handleNepaliDateChange = (value: string) => {
     setNepaliDate(value);
-    setConvertedEnglishDate(nepaliToEnglish(value));
+    const converted = nepaliToEnglish(value);
+    setConvertedEnglishDate(converted);
   };
 
   const getCurrentDates = () => {
     const today = new Date().toISOString().split("T")[0];
     setEnglishDate(today);
-    setConvertedNepaliDate(englishToNepali(today));
+    const converted = englishToNepali(today);
+    setConvertedNepaliDate(converted);
   };
+
+  const getTodaysNepaliDate = () => {
+    const todayNepali = getCurrentNepaliDate();
+    setNepaliDate(todayNepali);
+    const converted = nepaliToEnglish(todayNepali);
+    setConvertedEnglishDate(converted);
+  };
+
+  useEffect(() => {
+    getCurrentDates();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -73,10 +123,7 @@ export default function DateConverter() {
             </CardHeader>
             <CardContent className="p-6 space-y-6">
               <div className="space-y-2">
-                <Label
-                  htmlFor="english-date"
-                  className="text-sm font-medium text-gray-700"
-                >
+                <Label htmlFor="english-date" className="text-sm font-medium text-gray-700">
                   English Date (AD)
                 </Label>
                 <Input
@@ -93,13 +140,9 @@ export default function DateConverter() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">
-                  Nepali Date (BS)
-                </Label>
+                <Label className="text-sm font-medium text-gray-700">Nepali Date (BS)</Label>
                 <div className="w-full h-12 bg-sky-50 border-2 border-sky-200 rounded-lg flex items-center px-4">
-                  <span className="text-lg font-semibold text-sky-700">
-                    {convertedNepaliDate || "Select English date"}
-                  </span>
+                  <span className="text-lg font-semibold text-sky-700">{convertedNepaliDate || "Select English date"}</span>
                 </div>
               </div>
 
@@ -113,7 +156,7 @@ export default function DateConverter() {
           </Card>
 
           {/* Nepali to English */}
-            <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 pt-0">
+          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 pt-0">
             <CardHeader className="bg-gradient-to-r from-sky-600 to-sky-700 text-white rounded-t-lg h-16">
               <CardTitle className="flex items-center gap-3 w-full h-full">
                 <Calendar className="h-6 w-6" />
@@ -122,19 +165,18 @@ export default function DateConverter() {
             </CardHeader>
             <CardContent className="p-6 space-y-6">
               <div className="space-y-2">
-                <Label
-                  htmlFor="nepali-date"
-                  className="text-sm font-medium text-gray-700"
-                >
+                <Label htmlFor="nepali-date" className="text-sm font-medium text-gray-700">
                   Nepali Date (BS)
                 </Label>
-                <Input
-                  id="nepali-date"
-                  type="text"
-                  placeholder="YYYY-MM-DD (e.g., 2081-03-15)"
+
+                <DatePicker
                   value={nepaliDate}
-                  onChange={(e) => handleNepaliDateChange(e.target.value)}
-                  className="w-full h-12 text-lg border-2 border-gray-200 focus:border-sky-500 rounded-lg"
+                  onChange={(val: any) => handleNepaliDateChange(val)}
+                  calendarType="BS" // or "AD"
+                  dateFormat="YYYY-MM-DD"
+                  showMonthDropdown
+                  showYearDropdown
+                  isClearable
                 />
               </div>
 
@@ -143,49 +185,21 @@ export default function DateConverter() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700">
-                  English Date (AD)
-                </Label>
+                <Label className="text-sm font-medium text-gray-700">English Date (AD)</Label>
                 <div className="w-full h-12 bg-sky-50 border-2 border-sky-200 rounded-lg flex items-center px-4">
-                  <span className="text-lg font-semibold text-sky-700">
-                    {convertedEnglishDate || "Enter Nepali date"}
-                  </span>
+                  <span className="text-lg font-semibold text-sky-700">{convertedEnglishDate || "Enter Nepali date"}</span>
                 </div>
               </div>
+
+              <Button
+                onClick={getTodaysNepaliDate}
+                className="w-full bg-sky-600 hover:bg-sky-700 text-white h-12 text-lg font-medium"
+              >
+                Use Today's Nepali Date
+              </Button>
             </CardContent>
           </Card>
         </div>
-
-        {/* Information Section */}
-        <Card className="mt-12 shadow-lg pt-0">
-          <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 h-16">
-            <CardTitle className="text-gray-800 w-full h-full">
-              About Date Conversion
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-2">
-                  English Calendar (AD)
-                </h4>
-                <p className="text-gray-600 text-sm">
-                  The Gregorian calendar is internationally accepted and widely
-                  used for official purposes.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-800 mb-2">
-                  Nepali Calendar (BS)
-                </h4>
-                <p className="text-gray-600 text-sm">
-                  Bikram Sambat is the official calendar of Nepal, approximately
-                  57 years ahead of AD.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );

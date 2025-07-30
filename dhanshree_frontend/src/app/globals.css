@@ -127,3 +127,11 @@
   }
 }
 
+
+.slider-thumb {
+  @apply transition-transform duration-300 ease-in-out;
+}
+
+.slider-range {
+  @apply transition-all duration-300 ease-in-out;
+}

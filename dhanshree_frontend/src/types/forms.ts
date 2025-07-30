@@ -148,7 +148,10 @@ export const spaceFormSchema = basePropertySchema.extend({
 
   furnished: z.string().min(1, "Furnished is required"),
   zoning: z.enum(["residential", "commercial", "mixed"]).optional(),
-  ceilingHeight: z.number().min(1, "Ceiling height must be at least 1 foot"),
+    builtArea: z.number().min(1, "Built area is required"),
+  builtAreaUnit: z.string().min(1, "Built area unit is required"),
+  builtAreaNep: z.string().optional(),
+
 });
 
 export const editSpaceFormSchema = spaceFormSchema.omit({
@@ -159,7 +162,6 @@ export const editSpaceFormSchema = spaceFormSchema.omit({
 export type SpaceFormValues = z.infer<typeof spaceFormSchema>;
 export type EditSpaceFormValues = z.infer<typeof editSpaceFormSchema>;
 
-// Form field configuration
 export interface FormFieldConfig {
   name: string;
   label: string;

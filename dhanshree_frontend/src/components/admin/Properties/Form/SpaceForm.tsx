@@ -40,7 +40,7 @@ const defaultValues: Partial<SpaceFormValues> = {
   description: "",
   descriptionNp: "",
   status: PropertyStatus.EMERGING,
-  builtYear: 0,
+  builtYear: 1990,
   builtYearNep: "",
   images: [] as unknown as File[],
   thumbnail: new File([""], "placeholder.png", { type: "image/png" }),
@@ -61,7 +61,6 @@ const defaultValues: Partial<SpaceFormValues> = {
   parkingSpaces: 0,
   parkingSpacesNep: "",
   furnished: "none",
-  ceilingHeight: 0,
 };
 
 export default function SpaceForm({

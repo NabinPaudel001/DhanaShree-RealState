@@ -17,7 +17,7 @@ export default function Home() {
       {/* muni ko content chai paxi about us ma rakhni 
       <Feature/> */}
       <Category />
-      <div className="flex flex-col items-center justify-center gap-10 lg:px-20 px-3 ">
+      <div className="flex flex-col items-center justify-center gap-10 lg:px-20 px-3 bg-gradient-to-b from-sky-50 via-white to-sky-50  ">
         <PostCarousel
           title={t("featuredProperties")}
           description={t("viewTheFeaturedProperties")}
@@ -40,7 +40,6 @@ export default function Home() {
         />
       </div>
 
-      {/* Property Request Section */}
       <PropertyRequest />
     </>
   );

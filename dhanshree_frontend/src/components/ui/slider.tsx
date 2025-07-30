@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import * as SliderPrimitive from "@radix-ui/react-slider"
-
 import { cn } from "@/lib/utils"
 
 function Slider({
@@ -23,6 +22,8 @@ function Slider({
     [value, defaultValue, min, max]
   )
 
+  const [isDragging, setIsDragging] = React.useState(false)
+
   return (
     <SliderPrimitive.Root
       data-slot="slider"
@@ -31,29 +32,52 @@ function Slider({
       min={min}
       max={max}
       className={cn(
-        "   relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        "relative flex w-full touch-none items-center select-none",
+        "data-[disabled]:opacity-50",
+        "data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44",
+        "data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
         className
       )}
+      onPointerDown={() => setIsDragging(true)}
+      onPointerUp={() => setIsDragging(false)}
+      onPointerLeave={() => setIsDragging(false)}
       {...props}
     >
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
-          "bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
+          "relative grow overflow-hidden rounded-full bg-muted",
+          "data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full",
+          "data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
         )}
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
-            "bg-green-300 absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            "absolute bg-green-400",
+            isDragging
+              ? ""
+              : "transition-all duration-300 ease-out",
+            "data-[orientation=horizontal]:h-full",
+            "data-[orientation=vertical]:w-full"
           )}
         />
       </SliderPrimitive.Track>
+
       {Array.from({ length: _values.length }, (_, index) => (
         <SliderPrimitive.Thumb
-          data-slot="slider-thumb"
           key={index}
-          className=" border-primary bg-green-400 ring-ring/50 block size-4 shrink-0 rounded-full  shadow-sm transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+          data-slot="slider-thumb"
+          className={cn(
+            "block size-4 shrink-0 rounded-full border border-primary bg-green-500 shadow-sm",
+            "hover:ring-4 focus-visible:ring-4 ring-ring/50 focus-visible:outline-none",
+            isDragging
+              ? "" // Don't animate while dragging
+              : "transition-all duration-300 ease-out",
+            "hover:scale-110 focus:scale-110",
+            "cursor-grab active:cursor-grabbing",
+            "disabled:pointer-events-none disabled:opacity-50"
+          )}
         />
       ))}
     </SliderPrimitive.Root>

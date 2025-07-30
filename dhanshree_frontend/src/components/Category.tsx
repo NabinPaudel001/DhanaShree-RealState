@@ -73,7 +73,7 @@ if (response.isError) {
   ];
 
   return (
-    <section className="pt-30 px-4 md:px-10 max-w-7xl mx-auto">
+    <section className="pt-36  px-4 md:px-10 max-w-7xl mx-auto pb-10">
       <h2 className="text-3xl font-bold text-center mb-8">
         {t("exploreByCategory")}
       </h2>
