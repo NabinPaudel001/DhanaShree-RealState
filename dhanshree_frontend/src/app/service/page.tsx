@@ -170,7 +170,7 @@ export default function ServicePage() {
                 </div>
 
                 <div className="pt-4">
-                  <Link href="/List">
+                  <Link href="/list">
                     <Button className="group relative px-6 py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                       <span className="flex items-center">
                         {t("getStarted")}
@@ -213,7 +213,7 @@ export default function ServicePage() {
               {t("getStartedWithUs")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/List">
+              <Link href="/list">
                 <Button className="bg-white text-sky-700 hover:bg-gray-50 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                   {t("browseProperties")}
                 </Button>

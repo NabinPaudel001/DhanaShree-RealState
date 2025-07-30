@@ -85,7 +85,7 @@ function Filter() {
     if (data.purpose) queryParams.append("purpose", data.purpose);
 
     // Navigate to list page with query parameters
-    router.push(`/List?${queryParams.toString()}`);
+    router.push(`/list?${queryParams.toString()}`);
   }
 
   const handleTabChange = (value: string) => {
