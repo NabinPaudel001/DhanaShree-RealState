@@ -184,7 +184,7 @@ export default function PropertyRequest() {
               <div className="absolute bottom-6 left-6 text-white">
                 <h3 className="text-2xl font-bold mb-2">{t("listYourPropertyWithUs")}</h3>
                 <p className="text-lg opacity-90">
-                  {t("joinThousandsOwners")}
+                  {t("joinThousandsOwners")} 
                 </p>
               </div>
               {/* Decorative elements */}

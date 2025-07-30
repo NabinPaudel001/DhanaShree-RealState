@@ -45,6 +45,9 @@
     "type": "प्रकार",
     "location": "स्थान",
     "price": "मूल्य",
+    "propertyDetails": "सम्पत्ति विवरण",
+    "interiorDetails": "आन्तरिक विवरण",
+    "propertyInterior": "सम्पत्ति आन्तरिक विवरण",
     "priceHighToLow": "मूल्य - धेरै देखि कम",
     "priceLowToHigh": "मूल्य - कम देखि धेरै",
     "dateNewToOld": "मिति - नयाँ देखि पुरानो",
@@ -72,6 +75,9 @@
     "in": "मा",
     "road": "रोड",
     "area": "क्षेत्र",
+    "Area": "क्षेत्र",
+    "desc": "विवरण",
+    "landDetails": "जमीन विवरण",
     "exploreByCategory": "श्रेणीमा हेर्नुहोस्",
     "listings": "सूची",
     "previous": "अघिल्लो",
@@ -79,6 +85,14 @@
     "filters": "फिल्टरहरू",
     "rs": "रु",
     "overview": "अवलोकन",
+    "landId": "जग्गा आईडी",
+    "propertyId": "सम्पत्ति आईडी",
+    "apartmentId": "अपार्टमेन्ट आईडी",
+    "spaceId": "स्थान आईडी",
+    "flatId": "फ्ल्याट आईडी",
+    "apartmentDetails": "अपार्टमेन्ट विवरण",
+    "spaceDetails": "स्थान विवरण",
+    "flatDetails": "फ्ल्याट विवरण",
     "facilities": "सुविधाहरू",
     "yourName": "तँपाईको नाम",
     "yourEmail": "तँपाईको इमेल",
@@ -113,7 +127,90 @@
     "municipality": "नगरपालिका",
     "selectDistrict": "जिला चयन गर्नुहोस्",
     "selectMunicipality": "नगरपालिका चयन गर्नुहोस्",
- 
+    "unitConverter": "इकाई रूपान्तरण",
+    "dateConverter": "मिति रूपान्तरण",
+    "emiCalculator": "ईएमआई गणक",
+    "learnMore": "थप जान्नुहोस्",
+    "landType": "जग्गा प्रकार",
+    "listedYear": "सूचीबद्ध वर्ष",
+    "roadAccess": "सडक पहुँच",
+    "trustedRealEstate": "विश्वसनीय रियल एस्टेट",
+    "houseFacilities":{
+      "yearBuilt": "निर्माण वर्ष",
+      "roadAccess": "सडक पहुँच",
+      "propertyArea": "सम्पत्ति क्षेत्र",
+      "builtUpArea": "निर्मित क्षेत्रफल",
+      "datePosted": "पोस्ट गरिएको मिति",
+      "pricing": "मूल्य"
+    },
+    "landFacilities": {
+      "facing": "मुख",
+      "purpose": "उद्देश्य",
+      "landArea": "जमीन क्षेत्र",
+      "pricing": "मूल्य",
+      "status": "स्थिति"
+    },
+     "apartmentProperty": {
+    "features": {
+      "bhk": "बीएचके",
+      "built_area": "निर्माण क्षेत्र",
+      "floor": "तल्ला",
+      "furnished_type": "सजावटको प्रकार",
+      "built_year": "निर्माण वर्ष"
+    },
+    "details": {
+      "apartment_id": "अपार्टमेन्ट आईडी",
+      "property_face": "घरको दिशा",
+      "total_floors": "कुल तल्ला",
+      "total_area": "जग्गाको क्षेत्रफल",
+      "built_up_area": "निर्माण क्षेत्र",
+      "date_posted": "प्रकाशित मिति",
+      "price": "मूल्य",
+      "status": "स्थिति",
+      "purpose": "उद्देश्य",
+      "road_access": "सडक पहुँच"
+    }
+  },
+   "listedFlat": {
+    "features": {
+      "bedrooms": "शयनकक्ष",
+      "bathrooms": "स्नानकक्ष",
+      "built_area": "निर्माण क्षेत्र",
+      "floor_number": "तल्ला नम्बर",
+      "built_year": "निर्माण वर्ष",
+      "flat_type": "फ्ल्याट प्रकार"
+    },
+    "details": {
+      "flat_id": "फ्ल्याट आईडी",
+      "facing": "दिशा",
+      "total_floors": "कुल तल्ला",
+      "purpose": "उद्देश्य",
+      "total_area": "कुल क्षेत्रफल",
+      "built_up_area": "निर्माण क्षेत्र",
+      "date_posted": "प्रकाशित मिति",
+      "price": "मूल्य",
+      "status": "स्थिति"
+    }
+  },
+  "spaceListing": {
+    "features": {
+      "area": "क्षेत्रफल",
+      "frontage": "सामान्य चौडाइ",
+      "floor_number": "तल्ला नम्बर",
+      "built_year": "निर्माण वर्ष"
+    },
+    "details": {
+      "space_id": "स्पेस आईडी",
+      "facing": "दिशा",
+      "purpose": "उद्देश्य",
+      "floor": "तल्ला",
+      "access_road": "सडक पहुँच",
+      "total_area": "कुल क्षेत्रफल",
+      "rent_per_month": "भाडा/महिना",
+      "date_listed": "सूचीमा राखिएको मिति",
+      "status": "स्थिति"
+    }
+  },
     "enum": {
   "type": {
     "land": "जग्गा",
@@ -223,6 +320,13 @@
         "निर्माणपछिको समर्थन"
       ]
     }
+  },
+  "intPropertyDetails": {
+    "bedrooms": "सुत्ने कोठा संख्या",
+    "bathrooms": "स्नानघर संख्या",
+    "livingRooms": "बस्ने कोठा संख्या",
+    "furnishing": "फर्निसिङ",
+    "parking": "पार्किङ"
   },
   "readyToGetStarted": "तँपाईको सम्पत्ति सूचीबद्ध गर्न तयार हुनुहुन्छ?",
   "getStartedWithUs": "आजै हाम्रो विशेषज्ञहरूको टोलीसँग सम्पर्क गर्नुहोस् र हाम्रो व्यावसायिक सेवाहरूको विस्तृत दायरासँग तपाईंका रियल स्टेट लक्ष्यहरू हासिल गर्न हामीलाई सहयोग गर्न दिनुहोस्।",

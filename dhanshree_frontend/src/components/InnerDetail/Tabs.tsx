@@ -26,26 +26,32 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
     return i18n.language === "ne" ? englishToNepaliNumber(value) : value;
   };
 
-  const propertyInteriorDetails = [
-    {
-      label: "no. of Bedrooms",
-      value: formatNumber(property.details.bedrooms),
-    },
-    {
-      label: "no. of Bathrooms",
-      value: formatNumber(property.details.bathrooms),
-    },
-    {
-      label: "no. of Living rooms",
-      value: formatNumber(property.details.livingRooms),
-    },
-    { label: "Furnishing", value: property.details.furnishing },
-    { label: "Parking", value: property.details.parking },
-  ];
+ const propertyInteriorDetails = [
+  {
+    label: t("intPropertyDetails.bedrooms"),
+    value: formatNumber(property.details.bedrooms),
+  },
+  {
+    label: t("intPropertyDetails.bathrooms"),
+    value: formatNumber(property.details.bathrooms),
+  },
+  {
+    label: t("intPropertyDetails.livingRooms"),
+    value: formatNumber(property.details.livingRooms),
+  },
+  {
+    label: t("intPropertyDetails.furnishing"),
+    value: property.details.furnishing,
+  },
+  {
+    label: t("intPropertyDetails.parking"),
+    value: property.details.parking,
+  },
+];
 
   const spaceInteriorDetails = [
-    { label: "Furnishing", value: property.details.furnishing },
-    { label: "Parking", value: property.details.parking },
+    { label: t("intPropertyDetails.furnishing"), value: property.details.furnishing },
+    { label: t("intPropertyDetails.parking"), value: property.details.parking },
   ];
 
   const renderOverview = () => {
@@ -110,7 +116,7 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
             href="#interior"
             className="scroll-smooth pb-2 border-b-2 border-transparent font-semibold text-sky-600 hover:border-sky-500 hover:text-sky-700 transition-all duration-200 text-sm lg:text-base"
           >
-            Interior Details
+            {t("interiorDetails")}
           </a>
         )}
         <a
@@ -133,7 +139,7 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
           className="flex flex-col gap-5 bg-white p-4 lg:p-6 rounded-2xl shadow-lg border border-sky-100 mb-6"
         >
           <h1 className="font-bold text-lg lg:text-xl bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
-            Property Interior Details
+            {t("propertyInterior")}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8">
             {propertyInteriorDetails.map((item, index) => (
@@ -159,7 +165,7 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
           className="flex flex-col gap-5 bg-white p-4 lg:p-6 rounded-2xl shadow-lg border border-sky-100 mb-6"
         >
           <h1 className="font-bold text-lg lg:text-xl bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
-            Property Interior Details
+            {t("propertyInterior")}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8">
             {spaceInteriorDetails.map((item, index) => (

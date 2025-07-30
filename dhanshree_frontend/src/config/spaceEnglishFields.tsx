@@ -1,5 +1,6 @@
 import { FormFieldConfig } from "@/types/forms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 import {
   faTag,
   faBuilding,
@@ -14,7 +15,7 @@ import {
   faBed,
   faCalendar,
 } from "@fortawesome/free-solid-svg-icons";
-
+const { t } = useTranslation();
 const roadUnits = ["ft", "m", "km"];
 const landAreaUnits = [
   "sqft",
@@ -29,16 +30,16 @@ const landAreaUnits = [
 ];
 
 const facilities = [
-  { label: "Water Supply", value: "water supply" },
-  { label: "Drainage", value: "drainage" },
-  { label: "Electricity", value: "electricity" },
-  { label: "Internet", value: "internet" },
-  { label: "Parking", value: "parking" },
-  { label: "Security", value: "security" },
-  { label: "Garden", value: "garden" },
-  { label: "Swimming Pool", value: "swimming pool" },
-  { label: "Gym", value: "gym" },
-  { label: "Elevator", value: "elevator" },
+  { label: "Water Supply", value: t("enmfacilities.water_supply") },
+  { label: "Drainage", value: t("enmfacilities.drainage") },
+  { label: "Electricity", value: t("enmfacilities.electricity") },
+  { label: "Internet", value: t("enmfacilities.internet") },
+  { label: "Parking", value: t("enmfacilities.parking") },
+  { label: "Security", value: t("enmfacilities.security") },
+  { label: "Garden", value: t("enmfacilities.garden") },
+  { label: "Swimming Pool", value: t("enmfacilities.swimming_pool") },
+  { label: "Gym", value: t("enmfacilities.gym") },
+  { label: "Elevator", value: t("enmfacilities.elevator") }
 ];
 
 export const spaceDescriptionField: FormFieldConfig[] = [

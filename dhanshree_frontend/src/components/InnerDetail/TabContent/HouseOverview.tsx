@@ -39,7 +39,7 @@ function Overview({
   isLoading: boolean;
   error: boolean;
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [descriptionData, setDescriptionData] = useState<string>("");
 
   // Helper function to format numbers and prices based on language
@@ -76,38 +76,38 @@ function Overview({
 
   const propertyDetails = [
     {
-      label: "Year Built",
+      label: t("houseFacilities.yearBuilt"),
       value: formatNumber(property.details.builtYear),
       icon: "calendar",
     },
     {
-      label: "Road",
+      label: t("houseFacilities.roadAccess"),
       value: `${formatNumber(property.details.frontage.value)}${
         property.details.frontage.unit
       }`,
       icon: "road",
     },
     {
-      label: "Property Area",
+      label: t("houseFacilities.propertyArea"),
       value: `${formatNumber(property.details.landArea.value)} ${
         property.details.landArea.unit
       }`,
       icon: "mountain",
     },
     {
-      label: "Built Up Area",
+      label: t("houseFacilities.builtUpArea"),
       value: `${formatNumber(property.details.builtInArea?.value)} ${
         property.details.builtInArea?.unit
       }`,
       icon: "mountain",
     },
     {
-      label: "Date Posted",
+      label: t("houseFacilities.datePosted"),
       value: formatDate(property.createdAt),
       icon: "calendar",
     },
     {
-      label: "Pricing",
+      label: t("houseFacilities.pricing"),
       value: `Rs ${formatPrice(property.price)}`,
       icon: "dollar",
     },
@@ -126,9 +126,9 @@ function Overview({
       <div className="flex flex-col gap-4">
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between py-6">
-            <h1 className="font-medium">Overview</h1>
+            <h1 className="font-medium">{t("overview")}</h1>
             <h1 className="">
-              <span className="font-semibold">Property Id:</span>[
+              <span className="font-semibold">{t("propertyId")}:</span>[
               {formatNumber(property.propertyCode)}]
             </h1>
           </div>
@@ -156,13 +156,13 @@ function Overview({
         </div>
 
         <div className="bg-white p-4 rounded-lg shadow">
-          <h1 className="font-medium py-4">Description</h1>
+          <h1 className="font-medium py-4">{t("desc")}</h1>
           <p className="text-gray-500 font-light">{descriptionData}</p>
         </div>
 
         <div className="flex flex-col gap-5 bg-sky-100 p-4 rounded-lg shadow">
-          <h1 className="font-medium py-4">Property Details</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8">
+          <h1 className="font-medium py-4">{t("propertyDetails")}</h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
             {propertyDetails.map((item, index) => (
               <div key={index} className="grid grid-cols-2">
                 <p className="text-gray-400  pr-2">{item.label}</p>
