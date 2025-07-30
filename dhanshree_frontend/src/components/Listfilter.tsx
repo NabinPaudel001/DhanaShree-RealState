@@ -167,7 +167,7 @@ useEffect(() => {
     }
 
     // Navigate to list page with property code
-    router.push(`/List?${queryParams.toString()}`);
+    router.push(`/list?${queryParams.toString()}`);
   };
 
   const onFilterSubmit = (data: z.infer<typeof FilterFormSchema>) => {
@@ -209,7 +209,7 @@ useEffect(() => {
     console.log("Navigating with params:", queryParams.toString());
 
     // Navigate to list page with filters
-    router.push(`/List?${queryParams.toString()}`);
+    router.push(`/list?${queryParams.toString()}`);
   };
 
   const clearFilters = () => {
@@ -225,7 +225,7 @@ useEffect(() => {
     });
 
     // Navigate to clean list page
-    router.push("/List");
+    router.push("/list");
   };
 
   const toggleFilters = () => setShowFilters(!showFilters);

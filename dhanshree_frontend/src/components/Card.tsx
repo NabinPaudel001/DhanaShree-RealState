@@ -29,7 +29,7 @@ function Cardfm({ property }: { property: fetchPropertyDetails }) {
     const { t ,i18n} = useTranslation();
 
   return (
-    <Link href={`/List/${property.type}/${property.id}`}>
+    <Link href={`/list/${property.type}/${property.id}`}>
         <Card className="lg:w-[400px] h-[550px] w-full shadow-xl relative pt-0 group cursor-pointer gap-4">
           <div className="group h-2/3 relative">
             <img

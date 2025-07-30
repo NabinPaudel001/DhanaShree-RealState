@@ -70,7 +70,7 @@ function Hero() {
           >
             <a
               className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-sky-700 font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:bg-gray-50 w-full sm:w-auto"
-              href="/List"
+              href="/list"
             >
               <span className="mr-3">{t("getStarted")}</span>
               <FontAwesomeIcon

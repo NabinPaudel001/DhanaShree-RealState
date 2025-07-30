@@ -261,7 +261,7 @@ export default function PostCarousel({
             {/* View All Button */}
             {!isLoading && posts.length > 0 && (
               <div className="flex justify-center mt-12 px-4 sm:px-6 lg:px-8">
-                <Link href="/List">
+                <Link href="/list">
                   <Button className="group relative px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 text-base sm:text-lg">
                     <span className="flex items-center">
                       {t("viewAll")}
