@@ -15,6 +15,10 @@
     "exclusive": "Exclusive",
     "emerging": "Emerging",
     "latest": "Latest",
+
+    "rent":"Rent",
+    "sale": "Sale",
+
     "about": "About",
     "tools": "Tools",
     "findYourDreamHome": "Find Your Dream Home",
@@ -226,6 +230,7 @@
   "sale": "For Sale",
   "rent": "For Rent"
 }
+
 ,
   "unit": {
     "sqft": "sqft",
