@@ -80,7 +80,7 @@ if (response.isError) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
         {categories.map((category, index) => (
-          <Link key={index} href={`/List?type=${category.filterBy}`} className="group">
+          <Link key={index} href={`/list?type=${category.filterBy}`} className="group">
           <div
             key={index}
             className="relative group overflow-hidden rounded-xl shadow-md lg:h-80 h-64 w-full cursor-pointer"
