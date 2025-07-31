@@ -50,11 +50,11 @@ const features = [
     value: formatNumber(property.details.bedrooms),
     icon: faBed,
   },
-  {
-    label: t("listedFlat.features.bathrooms"),
-    value: formatNumber(property.details.bathrooms),
-    icon: faBath,
-  },
+  // {
+  //   label: t("listedFlat.features.bathrooms"),
+  //   value: formatNumber(property.details.bathrooms),
+  //   icon: faBath,
+  // },
   {
     label: t("listedFlat.features.built_area"),
     value: `${formatNumber(property.details.builtInArea?.value)} ${property.details.builtInArea?.unit}`,
