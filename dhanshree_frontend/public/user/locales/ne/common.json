@@ -25,10 +25,10 @@
     "forSale": "बेच्नको लागि",
     "forRent": "भाडामा",
     "apartment": "अपार्टमेंट",
-    "spaces": "स्पेस",
-    "houses": "घर",
+    "space": "स्पेस",
+    "house": "घर",
     "land": "जमीन",
-    "flats": "फ्लैट",
+    "flat": "फ्लैट",
     "properties": "सम्पत्ति",
     "lessThan1Crore": "1 करोड भन्दा कम",
     "1CroreTo2Crores": "1 करोड देखि 2 करोड",
@@ -225,10 +225,12 @@
     "emerging": "उदीयमान",
     "latest": "नवीनतम"
   },
-  "purpose": {
-    "rent": "भाडामा",
-    "sale": "बिक्रीमा"  
-  },
+"purpose": {
+  "label": "उदेश्य",
+  "selectPurpose": "उदेश्य छान्नुहोस्",
+  "sale": "बिक्रीमा",
+  "rent": "भाडामा"
+},
   "unit": {
     "sqft": "वर्गफुट",
     "ft": "फुट",

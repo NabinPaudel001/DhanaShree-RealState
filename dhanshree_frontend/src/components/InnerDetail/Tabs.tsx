@@ -41,7 +41,7 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
   },
   {
     label: t("intPropertyDetails.furnishing"),
-    value: t( `${property.details.furnishing}}`),
+    value: t( `${property.details.furnishing}`),
   },
   {
     label: t("intPropertyDetails.parking"),

@@ -86,11 +86,11 @@ type Property = {
 
 // Property types for checkbox filter
 const propertyTypes = [
-  { id: "land", label: "land" },
-  { id: "house", label: "house" },
-  { id: "apartment", label: "apartment" },
-  { id: "flat", label: "flat" },
-  { id: "space", label: "space" },
+  { id: "land", label: "Land" },
+  { id: "house", label: "House" },
+  { id: "apartment", label: "Apartment" },
+  { id: "flat", label: "Flat" },
+  { id: "space", label: "Space" },
 ] as const;
 
 // Filter form schema

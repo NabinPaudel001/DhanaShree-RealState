@@ -80,7 +80,8 @@ function Hero() {
             </a>
 
             <button className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/40 text-white font-medium rounded-xl backdrop-blur-sm hover:bg-white/10 hover:border-white/60 transition-all duration-300 w-full sm:w-auto">
-              {t("learnMore")}
+              
+             <a href="/about" className="ml-2 text-white/80 hover:text-white">{t("learnMore")}</a> 
             </button>
           </div>
 

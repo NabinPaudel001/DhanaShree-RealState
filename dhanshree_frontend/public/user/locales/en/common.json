@@ -25,10 +25,10 @@
     "sortBy": "Sort by",
     "forSale": "For Sale",
     "forRent": "For Rent",
-    "spaces": "Spaces",
-    "houses": "Houses",
+    "space": "Spaces",
+    "house": "Houses",
     "land": "Land",
-    "flats": "Flats",
+    "flat": "Flats",
     "properties": "Properties",
     "lessThan1Crore": "Less than 1 crore",
     "1CroreTo2Crores": "1 crore to 2 crores",
@@ -126,7 +126,7 @@
     "dateConverter": "Date Converter",
     "emiCalculator": "EMI Calculator",
     "learnMore": "Learn More",
-
+    "apartmentId": "Apartment ID",
     "landType": "Land Type",
     "listedYear": "Listed Year",
     "trustedRealEstate": "Trusted Real Estate",
@@ -220,10 +220,13 @@
       "emerging": "Emerging",
       "latest": "Latest"
     },
-    "purpose": {
-      "rent": "Rent",
-      "sale": "Sale"
-    },
+"purpose": {
+  "label": "Purpose",
+  "selectPurpose": "Select purpose",
+  "sale": "For Sale",
+  "rent": "For Rent"
+}
+,
   "unit": {
     "sqft": "sqft",
     "ft": "ft",
