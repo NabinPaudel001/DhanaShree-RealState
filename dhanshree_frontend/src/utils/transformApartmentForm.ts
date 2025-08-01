@@ -18,6 +18,12 @@ export interface TransformedApartmentFormData {
     builtYear: number | null;
     facilities: string[];
     facing: string;
+        bathrooms: number;
+        bedrooms: number;
+    kitchens: number;
+    livingRooms: number;
+    parking: number;
+
     totalFloors: number;
     landArea: {
       unit: string;
@@ -57,7 +63,12 @@ export const transformApartmentForm = (
     municipality: data.municipality ?? null,
     ward: data.wardNo ?? null,
     details: {
-      floors: data.floorNumber,
+      bathrooms: Number(data.bathrooms ?? 0),
+       bedrooms: data.bedrooms,
+      kitchens: data.kitchens,
+      floors: data.floors,
+      livingRooms: data.livingRooms,
+      parking: data.parkingSpaces,
       apartmentType: data.apartmentType,
       builtYear: data.builtYear ? Number(data.builtYear) : null,
       facilities: data.facilities ?? [],
@@ -86,7 +97,6 @@ export const transformApartmentForm = (
   if (!edit) {
     baseData.normalImageIds = uploadedImageIds ?? [];
     baseData.thumbnailImageId = thumbnailImageId ?? null;
-
   }
   return baseData;
 };
