@@ -76,7 +76,8 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
           )}
 
           {/* Image Counter */}
-          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+          <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1
+           rounded-full text-sm font-medium backdrop-blur-sm">
             {mobileSlideIndex + 1} / {images.length}
           </div>
 
@@ -167,7 +168,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
 
       {/* Enhanced Lightbox Modal */}
       {lightboxOpen && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center backdrop-blur-sm">
+        <div className="fixed inset-0 bg-black/90 z-[999999999] flex items-center justify-center backdrop-blur-sm">
           <button
             className="absolute top-4 right-4 text-white hover:text-sky-300 cursor-pointer z-10 bg-black/50 rounded-full p-2 transition-colors"
             onClick={() => setLightboxOpen(false)}

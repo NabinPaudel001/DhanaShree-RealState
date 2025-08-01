@@ -27,8 +27,8 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
   };
 
  const propertyInteriorDetails = [
-  {
-    label: t("intPropertyDetails.bedrooms"),
+  { 
+    label: t("enum.intPropertyDetails.bedrooms"),
     value: formatNumber(property.details.bedrooms),
   },
   // {
@@ -36,21 +36,21 @@ function InnerTab({ property, isLoading, error }: InnerTabProps) {
   //   value: formatNumber(property.details.bathrooms),
   // },
   {
-    label: t("intPropertyDetails.livingRooms"),
+    label: t("enum.intPropertyDetails.livingRooms"),
     value: formatNumber(property.details.livingRooms),
   },
   {
-    label: t("intPropertyDetails.furnishing"),
+    label: t("enum.intPropertyDetails.furnishing"),
     value: t( `${property.details.furnishing}`),
   },
   {
-    label: t("intPropertyDetails.parking"),
+    label: t("enum.intPropertyDetails.parking"),
     value: formatNumber(property.details.parking),
   },
 ];
 
   const spaceInteriorDetails = [
-    { label: t("intPropertyDetails.furnishing"), value: property.details.furnishing },
+    { label: t("enum.intPropertyDetails.furnishing"), value: property.details.furnishing },
     { label: t("intPropertyDetails.parking"), value: property.details.parking },
   ];
 
