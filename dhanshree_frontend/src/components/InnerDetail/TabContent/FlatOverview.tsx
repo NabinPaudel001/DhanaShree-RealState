@@ -84,7 +84,7 @@ const propertyDetails = [
   },
   {
     label: t("listedFlat.details.facing"),
-    value: property.details.facing,
+    value: t(`enum.facing.${property.details.facing}`),
   },
   {
     label: t("listedFlat.details.total_floors"),
@@ -92,7 +92,7 @@ const propertyDetails = [
   },
   {
     label: t("listedFlat.details.purpose"),
-    value: t(`purpose.${property.purpose}`), // Assuming `purpose` exists globally
+    value: t(`enum.purpose.${property.purpose}`), // Assuming `purpose` exists globally
   },
   {
     label: t("listedFlat.details.total_area"),
@@ -112,7 +112,7 @@ const propertyDetails = [
   },
   {
     label: t("listedFlat.details.status"),
-    value: property.status,
+    value: t(`enum.status.${property.status}`),
   },
 ];
 

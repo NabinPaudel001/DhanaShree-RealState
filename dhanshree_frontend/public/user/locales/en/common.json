@@ -257,8 +257,16 @@
   "swimming pool": "Swimming Pool",
   "gym": "Gym",
   "elevator": "Elevator"
-  }
-
+  },
+  "facing": {
+    "north": "North",
+    "south": "South",
+    "east": "East",
+    "west": "West",
+    "north east": "North-East",
+    "north west": "North-West",
+    "south east": "South-East",
+    "south west": "South-West"
   },
   "intPropertyDetails": {
     "bedrooms": "Bedrooms",
@@ -457,6 +465,7 @@
   "1hectare": "1 Hectare = 107,640 sq ft",
   "ropaniToAcre": "1 Ropani ≈ 0.13 Acre"
 
+}
 }
   
 
